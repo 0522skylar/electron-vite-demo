@@ -23,6 +23,8 @@ const url = `http://${process.env['VITE_DEV_SERVER_HOST']}:${process.env['VITE_D
 async function createWindow() {
   win = new BrowserWindow({
     title: 'Main window',
+    width: 1200,
+    height: 650,
     webPreferences: {
       preload: splash,
       nodeIntegration: true,

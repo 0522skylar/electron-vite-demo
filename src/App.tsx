@@ -6,26 +6,17 @@ import {
   useNavigate
 } from "react-router-dom";
 import styles from 'styles/app.module.scss'
+import 'antd/dist/antd.css';
 import BottomBar from "./components/BottomBar";
-import { Button, Popover } from 'antd';
 import { router } from './router'
 
 interface IRoute {
   path: string;
-  element: ReactNode;
+  element?: ReactNode;
 }
-const content = (
-  <div>
-    <p>Content</p>
-    <p>Content</p>
-  </div>
-);
 
 
 const App: React.FC = () => {
-  const [count, setCount] = useState(0)
-  const navigate = useNavigate();
-
   return (
     <div className={styles.app}>
           
@@ -36,19 +27,11 @@ const App: React.FC = () => {
           <Routes>
             {
               router.map((item: IRoute ) => {
-                return <Route path={item.path} element={item.element} />
+                return <Route path={item.path} element={item.element} key={item.path} />
               })
             }
           </Routes>
-          <Outlet/>
-          <button onClick={() => {navigate("/one")}}>点击跳转</button>
-          <hr />
-          <button onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-          <Popover content={content} title="Title">
-            <Button type="primary">Hover me</Button>
-          </Popover>
+          <Outlet/>  
         </div>
     </div>
   )

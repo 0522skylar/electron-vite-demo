@@ -8,7 +8,7 @@ import 'styles/index.css'
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <HashRouter>
-      <ConfigProvider direction="rtl">
+      <ConfigProvider>
         <App />
       </ConfigProvider>
     </HashRouter>

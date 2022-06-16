@@ -1,0 +1,101 @@
+@font-face {
+  font-family: "myFont";
+  src: url("../../assets/font/heiti.woff2") format("woff2");
+  font-stretch: "normal";
+  font-weight: 400;
+}
+
+.bg {
+  height: 100vh;
+  background: url('../../assets/image/bg.png') no-repeat 0 0;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  li {
+    list-style: none;
+  }
+  .main {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 70vh;
+    width: 800px;
+    border: 1px solid #ccc;
+
+    .leftBox {
+      width: 370px;
+      height: 100%;
+      border: 1px solid pink;
+    }
+
+    .rightBox {
+      position: relative;
+      width: 370px;
+      height: 100%;
+      box-sizing: border-box;
+      padding: 17px;
+      border: 10px solid #4cccff;
+      border-radius: 45px;
+      background-color: #fff;
+    }
+    .butterfly {
+      position: absolute;
+      left: -36px;
+      top: -36px;
+      width: 80px;
+      height: 80px;
+    }
+    .flower {
+      position: absolute;
+      right: 0px;
+      bottom: -10px;
+      width: 46px;
+      height: 54px;
+    }
+    .scroll_wrapper {
+      position: relative;
+      padding-right: 20px;
+      width: 300px;
+      height: 200px;
+      overflow: hidden;
+    }
+    .study_content {
+      position: relative;
+      // overflow: hidden;
+    }
+    .landscape {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      font-family: 'myFont';
+    }
+    .study_data_item {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 12px;
+      &::after {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        margin-top: -13px;
+        content: "";
+        width: 3.4px;
+        height: 27px;
+        border-radius: 3px;
+        background-color: #ffe44d;
+      }
+    }
+    .time {
+      color: #622400;
+    }
+    .desc {
+      color: #9c3900;
+    }
+  }
+}
