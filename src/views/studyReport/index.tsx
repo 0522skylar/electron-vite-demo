@@ -11,7 +11,7 @@ export default function StudyReport() {
   const landscape = useRef(null);
 
   useEffect(() => {
-    const warp = document.querySelector("#content");
+    const warp = document.querySelector("#content") || "";
     new BetterScroll(warp, {
       scrollbar: {
         fade: false,
