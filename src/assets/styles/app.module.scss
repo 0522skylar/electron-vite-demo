@@ -1,0 +1,13 @@
+.app {
+  text-align: center;
+  display: flex;
+  height: 100vh;
+  .leftBox {
+    width: 200px;
+  }
+  .rightBox {
+    flex: 1;
+    border-left: 1px solid #ccc;
+    height: 100vh;
+  }
+}

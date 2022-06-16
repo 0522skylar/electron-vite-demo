@@ -1,0 +1,30 @@
+.box {
+  background-color: #9fd6b7;
+}
+
+.active {
+  color: red;
+  font-weight: 700;
+}
+
+.bottom_bar {
+  height: 80px;
+  width: 100%;
+  left: 0;
+  z-index: 10;
+  .content {
+    height: 50px;
+    line-height: 50px;
+    background-color: #9fd6b7;
+    border: 1px solid sandybrown;
+  }
+}
+
+.content {
+  padding: 0 10px;
+}
+.active {
+  color: red;
+  font-weight: 700;
+  background-color: #9fd6b7;
+}
