@@ -12,6 +12,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  ul {
+    margin: 0;
+    padding: 0;
+  }
   li {
     list-style: none;
   }
@@ -23,12 +27,10 @@
     justify-content: space-between;
     height: 70vh;
     width: 800px;
-    border: 1px solid #ccc;
 
     .leftBox {
       width: 370px;
       height: 100%;
-      border: 1px solid pink;
     }
 
     .rightBox {
@@ -59,12 +61,18 @@
       position: relative;
       padding-right: 20px;
       width: 300px;
-      height: 200px;
+      height: 360px;
       overflow: hidden;
     }
     .study_content {
       position: relative;
-      // overflow: hidden;
+      font-family: 'myFont';
+      font-size: 16px;
+
+    }
+    .content {
+      line-height: 27px;
+
     }
     .landscape {
       display: flex;
@@ -78,7 +86,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 0 12px;
+      padding: 12px;
+      font-size: 16px;
       &::after {
         position: absolute;
         top: 50%;
@@ -91,11 +100,77 @@
         background-color: #ffe44d;
       }
     }
-    .time {
-      color: #622400;
-    }
-    .desc {
-      color: #9c3900;
+  }
+  .title {
+    font-size: 20px;
+    color: #1a1a1a;
+    margin: 12px 0;
+  }
+  .time {
+    color: #622400;
+  }
+  .desc {
+    color: #9c3900;
+  }
+  .icon_tick {
+    flex-shrink: 0;
+    width: 35px;
+    height: 36px;
+  }
+  .knowledge_list_item {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 12px;
+  }
+  .knowledge_desc {
+    flex: 1;
+    margin-left: 12px;
+    line-height: 27px;
+    text-align: left;
+    font-size: 16px;
+    font-family: 'myFont';
+    color: #333;
+  }
+  .icon_star_left {
+    position: absolute;
+    bottom: -50px;
+    left: -37px;
+  }
+  .icon_star_right {
+    position: absolute;
+    top: -50px;
+    right: -37px;
+  }
+  .work_box {
+    position: relative;
+    box-sizing: border-box;
+    margin: 0 auto;
+    width: 380px;
+    height: 340px;
+  }
+  .pic_frame_box {
+    width: 350px;
+    height: 182px;
+    position: absolute;
+    margin: auto auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    .img {
+      width: 98%;
+      height: auto;
+      border:20px solid #000;
+      border-image-source: url("https://ai-cdn.oss-cn-shenzhen.aliyuncs.com/prod/img/5fe9d585c72c9d06d670896c.png");
+
+      border-image-slice:40 40 40 40;
+      border-image-width:20px;
+      border-image-repeat:repeat;
+      background-color: #fff;
+      flex-shrink: 0;
     }
   }
 }
