@@ -10,19 +10,20 @@ interface IvoiceInfo {
 
 export default function VoiceBar(props: IvoiceInfo) {
 
-  let imgUrl = kingIcon; // 图片
-  let isPlay = false;
-  let timer: any = null;
+  let [imgUrl, setImgUrl] = useState(kingIcon); // 图片
+  // let isPlay = false;
+  const [isPlay, setIsPlay] = useState(false);
+  let timer: NodeJS.Timeout;
+  // const [timer, setTimer] = useState(null);
 
   const { userVoiceInfo , isLandscape = false} = props;
   const workVoice  = useRef(null);
-  const $audio: HTMLAudioElement = document.getElementById("audio") as HTMLAudioElement;
 
   useEffect(() => {
     //  需要监听页面挂起和呼出，当页面挂起时，音频停止
-    document.addEventListener('visibilitychange', stopThisVoice)
+    document.getElementById("warpVoide")?.addEventListener('visibilitychange', stopThisVoice)
     return () => {
-      document.removeEventListener('visibilitychange', stopThisVoice)
+      document.getElementById("warpVoide")?.removeEventListener('visibilitychange', stopThisVoice)
       //  清除定时器
       clearInterval(timer)
     }
@@ -48,24 +49,31 @@ export default function VoiceBar(props: IvoiceInfo) {
   }
   
   const onCommntEnded = () => {
-    isPlay = false
-    clearInterval(timer)
-    imgUrl = stopIcon;
+
+    // isPlay = false
+    setIsPlay(false);
+    console.log('end-----------', timer);
+    // clearInterval(timer)
+    setImgUrl(stopIcon)
   }
   const stop = () => {
-    isPlay = false
-   
+  const $audio: HTMLAudioElement = document.getElementById("audio") as HTMLAudioElement; //音频dom
+
+    // isPlay = false
+    setIsPlay(false);
     if($audio != null) {
       $audio.pause()
     }
     //  停止音波动画
-    clearInterval(timer)
+    // clearInterval(timer)
     //  切换按钮
-    imgUrl = stopIcon;
+    setImgUrl(stopIcon)
   }
 
   // 离开页面后，停止音频，回来时恢复
   const stopThisVoice = () => {
+  const $audio: HTMLAudioElement = document.getElementById("audio") as HTMLAudioElement; //音频dom
+
     if(document.hidden) {
       $audio.pause() // 页面挂起
     } else {
@@ -78,45 +86,50 @@ export default function VoiceBar(props: IvoiceInfo) {
 
 
   const ready = () => {
-    imgUrl = kingIcon;
+    setImgUrl(kingIcon)
     console.log('ready ok')
   }
   // 点击事件
   const clickVoiceFun = () => {
-    isPlay = !isPlay
-    console.log('click--------------')
+    // isPlay = !isPlay
+    setIsPlay(!isPlay);
+  }
+
+  useEffect(() => {
+    const $audio: HTMLAudioElement = document.getElementById("audio") as HTMLAudioElement; //音频dom
     try {
       if (isPlay) {
         //  从0秒开始播放
-        if ($audio.fastSeek) {
-          $audio.fastSeek(0)
-        } else {
-          $audio.currentTime = 0
-        }
+        // if ($audio.fastSeek) {
+        //   $audio.fastSeek(0)
+        // } else {
+        //   $audio.currentTime = 0
+        // }
         $audio.play()
-
+        setImgUrl(kingIcon)
         //  播放音波动画
-        timer = setInterval(() => {
-          imgUrl =
-            imgUrl === stopIcon
-              ? kingIcon
-              : stopIcon
-        }, 1000 / 4)
-
+        // timer = setInterval(() => {
+        //   setImgUrl(imgUrl === stopIcon ? kingIcon : stopIcon)
+        // }, 1000 / 4)
         //  播放学生语音时停止老师点评语音 -- 待续
       } else {
         //  停止音波动画
-        clearInterval(timer)
+        // clearInterval(timer)
         //  切换按钮
-        imgUrl = stopIcon
+        // imgUrl = stopIcon
+        setImgUrl(stopIcon)
         $audio.pause()
       }
     } catch (e) {
       console.log('[dom error] 学生语音组件', e)
     }
-  }
+
+    return () => {
+      // clearInterval(timer)
+    }
+  }, [isPlay])
   return (
-    <div className='voice-container' onClick={clickVoiceFun}>
+    <div className='voice-container' onClick={clickVoiceFun} id="warpVoide">
       <img src={ imgUrl } className={isLandscape ? 'isLandscape voice-img' : 'voice-img'}/>
       <span className={isLandscape ? 'isLandscape voiceLen' : "voiceLen"}>{ realFormatSecon(userVoiceInfo.voiceLen) }</span>
       <audio
