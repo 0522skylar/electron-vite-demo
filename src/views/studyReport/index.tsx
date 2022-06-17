@@ -5,11 +5,15 @@ import BetterScroll from 'better-scroll'
 import butterfly from '@/assets/image/icon_butterfly@2x.be6101e3.png'
 import flower from '@/assets/image/icon_deco_flower@2x.a3712ddb.png'
 import { finishIcon, snow } from './constant'
-
+import VoiceBar from '@/components/VoiceBar'
 
 export default function StudyReport() {
   const landscape = useRef(null);
 
+  const voideInfo = {
+    voiceLen: 50,
+    voiceUrl: "https://tts.youdao.com/fanyivoice?word=Pick%20up&le=eng&keyfrom=speaker-target"
+  }
   useEffect(() => {
     const warp = document.querySelector("#content") || "";
     new BetterScroll(warp, {
@@ -26,6 +30,7 @@ export default function StudyReport() {
             <div className={style.work_box}>
               <div className={style.pic_frame_box}>
                 <img src="https://ai-cdn.oss-cn-shenzhen.aliyuncs.com/81fa86b1c2e1ed72f2f84ec4b9344752.jpg" className={style.img} />
+                <VoiceBar userVoiceInfo={voideInfo} isLandscape={true} ></VoiceBar>
               </div>
             </div>
             <img src={snow} className={style.icon_star_left}/>
