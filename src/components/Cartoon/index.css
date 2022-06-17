@@ -1,0 +1,15 @@
+.cartoon-isLandscape {
+  width: 63px;
+  height: 72px;
+  background-size: cover !important;
+  position: relative;
+  background-repeat: no-repeat !important;
+  padding-top: 14px;
+  padding-left: 7px;
+}
+
+.happy {
+  width: 50px;
+  height: 40px;
+  background-size: cover !important;
+}

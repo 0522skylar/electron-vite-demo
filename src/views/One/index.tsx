@@ -1,6 +1,6 @@
 import React, { createContext, useRef, useState } from 'react'
 
-
+import Cartoon from '@/components/Cartoon'
 const tabItems = [
   { key: 'fruits', title: '水果1111' },
   { key: 'vegetables', title: '蔬菜' },
@@ -18,6 +18,7 @@ export default function One() {
       <div title='配合 Swiper 实现手势滑动' className='myTabs'>
       <h3>这是One page</h3>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis soluta, doloribus consequuntur et, natus rerum, adipisci aspernatur eos sapiente atque velit aliquid animi. Incidunt, sequi a veniam iste ratione debitis!
+        <Cartoon isLandscape={true}></Cartoon>
       </div>
     </>
   )
