@@ -1,0 +1,105 @@
+.star-contain-compont-isLandscape {
+  display: block;
+  position: relative;
+}
+
+.star-contain-compont{
+  display: none;
+}
+
+.star-contain {
+  display: flex;
+  margin: 21px 12px;
+  
+}
+.star-item {
+  flex: 1;
+  text-align: center;
+}
+.star-icon {
+  width: 79px;
+  pointer-events: all;
+}
+.remark {
+  font-size: 20px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.footer {
+  color: #4d4d4d;
+}
+
+.active {
+  color: #ff7e00;
+  font-weight: 600;
+}
+
+.comment-contain {
+  height: 360px;
+  overflow: auto;
+}
+.field-class {
+  width: 90%;
+  height: 115px;
+  background: #ffffff;
+  border: 2px solid #cdcdcd;
+  border-radius: 10px;
+  margin-top: 20px;
+  padding: 25px;
+  font-size: 26px;
+  line-height: 26px;
+  resize: none;
+  color: #1a1a1a;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.coment-item {
+  margin: 8px 5px;
+  float: left;
+  width: 205px;
+  height: 58px;
+  line-height: 58px;
+  background: #ffffff;
+  border: 2px solid #cdcdcd;
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 24px;
+  text-align: center;
+}
+.coment-column {
+  overflow: hidden;
+}
+.coment-item.click {
+  color: #ff9516;
+  border: 2px solid #ffc682;
+  background: #fff8ef;
+}
+.checkbox-div {
+  font-size: 26px;
+  color: #333;
+  margin-left: 5px;
+  margin-top: 8px;
+}
+
+/* 重写文本框默认样式 */
+textarea::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #999;
+  font-size: 0.2rem;
+}
+textarea:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #999;
+  font-size: 0.2rem;
+}
+textarea::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #999;
+  font-size: 0.2rem;
+}
+textarea::-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #999;
+  font-size: 0.2rem;
+}
