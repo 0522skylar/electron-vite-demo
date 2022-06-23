@@ -7,8 +7,8 @@ interface ICartoon {
 }
 export default function Cartoon(props: ICartoon) {
   const {isLandscape} = props;
-  // const cartoon = useRef(null);
   useEffect(() => {
+
     const cartoon:HTMLDivElement = document.getElementById('cartoon') as HTMLDivElement;
 
     //  计算缩放比例
@@ -30,7 +30,7 @@ export default function Cartoon(props: ICartoon) {
     return () => {
       clearInterval(timer);
     }
-  })
+  }, [])
   return (
     <div
     id="cartoon"

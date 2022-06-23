@@ -11,17 +11,18 @@ export default function StudyReport() {
   const landscape = useRef(null);
 
   const voideInfo = {
-    voiceLen: 50,
-    voiceUrl: "https://tts.youdao.com/fanyivoice?word=Pick%20up&le=eng&keyfrom=speaker-target"
+    voiceLen: 8,
+    voiceUrl: "https://dict.youdao.com/dictvoice?audio=Cayton+describes+himself+as+comfortably+well-off.She+describes+him+as+urbane+and+charming.This+verse+describes+three+signs+of+spring.&le=eng"
   }
   useEffect(() => {
-    const warp = document.querySelector("#content") || "";
+    const warp = landscape.current || "";
+    console.log(warp, '----------')
     new BetterScroll(warp, {
       scrollbar: {
         fade: false,
       },
     })
-  }, [landscape.current])
+  }, [])
   return (
     <>
       <div className={style.bg}>

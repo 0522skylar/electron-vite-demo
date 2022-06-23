@@ -10,11 +10,12 @@ interface IvoiceInfo {
 
 export default function VoiceBar(props: IvoiceInfo) {
 
-  let [imgUrl, setImgUrl] = useState(kingIcon); // 图片
+  let [imgUrl, setImgUrl] = useState(stopIcon); // 图片
+  let imgSrc: string = stopIcon;
   // let isPlay = false;
   const [isPlay, setIsPlay] = useState(false);
-  let timer: NodeJS.Timeout;
-  // const [timer, setTimer] = useState(null);
+  let timer: NodeJS.Timeout | undefined;
+  const [count, setCount] = useState(null);
 
   const { userVoiceInfo , isLandscape = false} = props;
   const workVoice  = useRef(null);
@@ -29,7 +30,7 @@ export default function VoiceBar(props: IvoiceInfo) {
     }
   }, [])
   // 秒数转分钟
-  const realFormatSecon = (second: number) => {
+  const realFormatSecond = (second: number) => {
       if (
         second === null ||
         second === undefined ||
@@ -40,24 +41,22 @@ export default function VoiceBar(props: IvoiceInfo) {
       var secondType = typeof second
 
       if (secondType === 'number' || secondType === 'string') {
-        var mimute = Math.floor(second / 60)
-        second = second - mimute * 60
-        return ('0' + mimute).slice(-2) + ':' + ('0' + second).slice(-2)
+        let minute = Math.floor(second / 60)
+        second = second - minute * 60
+        return ('0' + minute).slice(-2) + ':' + ('0' + second).slice(-2)
       } else {
         return '00:00'
       }
   }
   
-  const onCommntEnded = () => {
-
+  const onCommentEnded = () => {
     // isPlay = false
     setIsPlay(false);
-    console.log('end-----------', timer);
     // clearInterval(timer)
     setImgUrl(stopIcon)
   }
   const stop = () => {
-  const $audio: HTMLAudioElement = document.getElementById("audio") as HTMLAudioElement; //音频dom
+    const $audio: HTMLAudioElement = workVoice.current as unknown as HTMLAudioElement; //音频dom
 
     // isPlay = false
     setIsPlay(false);
@@ -72,7 +71,7 @@ export default function VoiceBar(props: IvoiceInfo) {
 
   // 离开页面后，停止音频，回来时恢复
   const stopThisVoice = () => {
-  const $audio: HTMLAudioElement = document.getElementById("audio") as HTMLAudioElement; //音频dom
+  const $audio: HTMLAudioElement = workVoice.current as unknown as HTMLAudioElement; //音频dom
 
     if(document.hidden) {
       $audio.pause() // 页面挂起
@@ -87,6 +86,7 @@ export default function VoiceBar(props: IvoiceInfo) {
 
   const ready = () => {
     setImgUrl(kingIcon)
+    imgSrc = kingIcon;
     console.log('ready ok')
   }
   // 点击事件
@@ -95,28 +95,37 @@ export default function VoiceBar(props: IvoiceInfo) {
     setIsPlay(!isPlay);
   }
 
+  /*
   useEffect(() => {
-    const $audio: HTMLAudioElement = document.getElementById("audio") as HTMLAudioElement; //音频dom
+    const $audio: HTMLAudioElement = workVoice.current as unknown as HTMLAudioElement; //音频dom
     try {
       if (isPlay) {
         //  从0秒开始播放
-        // if ($audio.fastSeek) {
-        //   $audio.fastSeek(0)
-        // } else {
-        //   $audio.currentTime = 0
-        // }
+        if ($audio.fastSeek) {
+          $audio.fastSeek(0)
+        } else {
+          $audio.currentTime = 0
+        }
         $audio.play()
         setImgUrl(kingIcon)
-        //  播放音波动画
-        // timer = setInterval(() => {
-        //   setImgUrl(imgUrl === stopIcon ? kingIcon : stopIcon)
-        // }, 1000 / 4)
+        // 播放音波动画
+        timer = setInterval(() => {
+          if(imgSrc == stopIcon) {
+            imgSrc = kingIcon;
+          } else {
+            imgSrc = stopIcon;
+          }
+        }, 1000 / 4)
+        setCount(timer);
+
         //  播放学生语音时停止老师点评语音 -- 待续
       } else {
+
         //  停止音波动画
-        // clearInterval(timer)
+        clearInterval(count)
+        setCount(null);
         //  切换按钮
-        // imgUrl = stopIcon
+        imgUrl = stopIcon
         setImgUrl(stopIcon)
         $audio.pause()
       }
@@ -128,10 +137,44 @@ export default function VoiceBar(props: IvoiceInfo) {
       // clearInterval(timer)
     }
   }, [isPlay])
+  */
+  useEffect(() => {
+    const $audio: HTMLAudioElement = workVoice.current as unknown as HTMLAudioElement; //音频dom
+    if (isPlay) {
+      //  从0秒开始播放
+      if ($audio.fastSeek) {
+        $audio.fastSeek(0)
+      } else {
+        $audio.currentTime = 0
+      }
+      $audio.play()
+      setImgUrl(kingIcon)
+      let timer: NodeJS.Timeout;
+      // 播放音波动画
+      timer = setInterval(() => {
+        if(imgSrc == stopIcon) {
+          imgSrc = kingIcon;
+          setImgUrl(kingIcon)
+        } else {
+          imgSrc = stopIcon;
+          setImgUrl(stopIcon)
+        }
+      }, 1000 / 4)
+      return () => clearInterval(timer)
+      //  播放学生语音时停止老师点评语音 -- 待续
+    } else {
+      //  切换按钮
+      // imgUrl = stopIcon
+      setImgUrl(kingIcon)
+      $audio.pause()
+    }
+    
+  }, [isPlay])
+
   return (
     <div className='voice-container' onClick={clickVoiceFun} id="warpVoide">
       <img src={ imgUrl } className={isLandscape ? 'isLandscape voice-img' : 'voice-img'}/>
-      <span className={isLandscape ? 'isLandscape voiceLen' : "voiceLen"}>{ realFormatSecon(userVoiceInfo.voiceLen) }</span>
+      <span className={isLandscape ? 'isLandscape voiceLen' : "voiceLen"}>{ realFormatSecond(userVoiceInfo.voiceLen) }</span>
       <audio
         style={{display: 'none'}}
         ref={workVoice}
@@ -139,7 +182,7 @@ export default function VoiceBar(props: IvoiceInfo) {
         src={userVoiceInfo.voiceUrl}
         id="audio"
         onCanPlay={ ready }
-        onEnded={ onCommntEnded }
+        onEnded={ onCommentEnded }
       />
     </div>
   )
