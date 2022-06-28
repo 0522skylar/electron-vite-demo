@@ -14,7 +14,7 @@ const tabItems = [
 export default function One() {
   const swiperRef = useRef(null)
   const [activeIndex, setActiveIndex] = useState(0)
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(true);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -39,7 +39,6 @@ export default function One() {
 
         <Modal title="评价" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
           <Comment isLandscape={true}></Comment>
-        
         </Modal>
       </div>
     </>

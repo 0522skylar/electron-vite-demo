@@ -15,8 +15,8 @@ export default function StudyReport() {
     voiceUrl: "https://dict.youdao.com/dictvoice?audio=Cayton+describes+himself+as+comfortably+well-off.She+describes+him+as+urbane+and+charming.This+verse+describes+three+signs+of+spring.&le=eng"
   }
   useEffect(() => {
+    // const warp = document.querySelector("#content") || "";
     const warp = landscape.current || "";
-    console.log(warp, '----------')
     new BetterScroll(warp, {
       scrollbar: {
         fade: false,
@@ -38,7 +38,7 @@ export default function StudyReport() {
             <img src={snow} className={style.icon_star_right}/>
           </div>
           <div className={style.rightBox}>
-            <div className={style.scroll_wrapper} id="content">
+            <div className={style.scroll_wrapper} id="content" ref={landscape}>
               <div className={style.scroll_box}>
                 <ul className={style.landscape}>
                   <li className={style.study_data_item}>
@@ -54,7 +54,7 @@ export default function StudyReport() {
                     <span className={style.desc}>累计作品</span>
                   </li>
                 </ul>
-                <div className={style.study_content} ref={landscape} >
+                <div className={style.study_content} >
                   <div className={style.title}>内容名称</div>
                   <div className={style.content}>
                     内容Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore natus error vitae officia odit illo corporis officiis in, maxime a sunt mollitia perferendis, beatae fugit ab necessitatibus similique aperiam. Ad?

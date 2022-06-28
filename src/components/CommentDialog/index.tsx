@@ -1,4 +1,4 @@
-import Comment from '@/components/Comment'
+// import Comment from '@/components/Comment'
 import React, { useRef, useState } from 'react'
 import { Button, Modal } from 'antd';
 
@@ -23,8 +23,8 @@ export default function CommentDialog() {
         Open Modal
       </Button>
       <Modal title="评价" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-        <Comment isLandscape={true}></Comment>
+        {/* <Comment isLandscape={true}></Comment> */}
       </Modal>
     </>
   )
-} 
+}

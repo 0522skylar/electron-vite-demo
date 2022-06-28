@@ -4,7 +4,7 @@ import defaultStar from '@/assets/image/icon_star_default@2x.png'
 import activeStar from '@/assets/image/icon_star_pre@2x.png'
 import { starDataList} from './data'
 import './index.css'
- 
+
 interface IProps {
   isLandscape: boolean;
 }
@@ -66,13 +66,18 @@ export default function Comment(props: IProps) {
   const starDistance = () => {
     const starIconFirst:HTMLDivElement = document.getElementById('starIconFirst') as HTMLDivElement
     const starItemFirst: HTMLDivElement = document.getElementById('starItemFirst') as HTMLDivElement
-
       //  计算第一个星星左侧到屏幕左边的距离
-      const starIconFirstX = isLandscape
-        ? Number(starIconFirst.getBoundingClientRect().left -(starIconFirst.clientWidth + starItemFirst.clientWidth / 2))
-        : Number(starIconFirst.getBoundingClientRect().left)
+      let starIconFirstX = 50;
       //  计算一个星星到另一个星星的距离
-      const starItemFirstX = starItemFirst.clientWidth
+      let starItemFirstX = 20;
+      if(starIconFirst != null) {
+        starIconFirstX = isLandscape
+        ? Number(starIconFirst.getBoundingClientRect().left -(starIconFirst.clientWidth + starItemFirst.clientWidth / 2))
+        : Number(starIconFirst.getBoundingClientRect().left);
+
+        starItemFirstX = starItemFirst.clientWidth
+      }
+
 
       for (let i = 0; i < 5; i++) {
         const starPosition = starIconFirstX + i * starItemFirstX
@@ -81,6 +86,7 @@ export default function Comment(props: IProps) {
   }
 
   const touchstartStar = (event: TouchEvent) => {
+    console.log('touchStar---')
     // 判断默认行为是否可以被禁用
     if (event.cancelable) {
       // 判断默认行为是否已经被禁用
@@ -193,13 +199,15 @@ export default function Comment(props: IProps) {
   }
 
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     getStar();
     starDistance()
     const starContainer:HTMLDivElement = document.getElementById('starContainer') as HTMLDivElement;
-    starContainer.addEventListener('touchstart', touchstartStar)
-    starContainer.addEventListener('touchmove', touchmoveStar)
-    starContainer.addEventListener('touchend', touchendStar)
+    if(starContainer != null) {
+      starContainer.addEventListener('touchstart', touchstartStar)
+      starContainer.addEventListener('touchmove', touchmoveStar)
+      starContainer.addEventListener('touchend', touchendStar)
+    }
 
     return () => {
       starContainer.removeEventListener('touchstart', touchstartStar)
@@ -247,11 +255,11 @@ export default function Comment(props: IProps) {
                  }
               </div>
             </div>
-            
+
             <div className='describe'>
               <textarea className='field-class' placeholder='在这里可以描述你的其他评价' maxLength={300} id="textArea"></textarea>
             </div>
-            
+
           </div>
         ) : ''
       }
@@ -262,7 +270,7 @@ export default function Comment(props: IProps) {
             <Checkbox> 同意我们工作人员后续与您电话联系了解具体情况</Checkbox>
           </div>
         ) : ""
-        
+
       }
     </div>
     </>
