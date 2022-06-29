@@ -10,7 +10,7 @@
 .star-contain {
   display: flex;
   margin: 21px 12px;
-  
+
 }
 .star-item {
   flex: 1;
@@ -36,7 +36,7 @@
 }
 
 .comment-contain {
-  height: 360px;
+  height: 400px;
   overflow: auto;
 }
 .field-class {
@@ -64,16 +64,22 @@
   border: 2px solid #cdcdcd;
   border-radius: 10px;
   overflow: hidden;
-  font-size: 24px;
+  font-size: 16px;
   text-align: center;
 }
 .coment-column {
   overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 .coment-item.click {
   color: #ff9516;
   border: 2px solid #ffc682;
   background: #fff8ef;
+}
+.describe {
+  text-align: center;
 }
 .checkbox-div {
   font-size: 26px;
@@ -86,20 +92,20 @@
 textarea::-webkit-input-placeholder {
   /* WebKit browsers */
   color: #999;
-  font-size: 0.2rem;
+  font-size: 16px;
 }
 textarea:-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
   color: #999;
-  font-size: 0.2rem;
+  font-size: 16px;
 }
 textarea::-moz-placeholder {
   /* Mozilla Firefox 19+ */
   color: #999;
-  font-size: 0.2rem;
+  font-size: 16px;
 }
 textarea::-ms-input-placeholder {
   /* Internet Explorer 10+ */
   color: #999;
-  font-size: 0.2rem;
+  font-size: 16px;
 }

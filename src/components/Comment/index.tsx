@@ -17,20 +17,20 @@ export default function Comment(props: IProps) {
 
   const {isLandscape} = props;
   const [mark, useMark] = useState(0); // 几颗星星
-  let remark = useRef('您对本次学习满意吗?');
+  let [remark, setRemark] = useState('您对本次学习满意吗?');
   let evaluationStarId = 0;
   let evaluationStarIdArr: any[] = []; // 星值id数组
-  let starPositionArray: number[] = [];
+  let starPositionArray = useRef<Array<number>>([]);
   let checkbox = false;
   let commentIds: any[] = [];
   let comments: string[] = []; // 评论内容
   let commentsText = ''; // 其他的话
-  let commentItems1: any[] = [];
-  let commentItems2: any[] = [];
-  let commentItems3: any[] = [];
-  let commentItems4: any[]= [];
-  let commentItems5: any[] = [];
-  let commentItems: any[] = [];
+  let commentItems1 = useRef<Array<Icomment>>([]);
+  let commentItems2 = useRef<Array<Icomment>>([]);
+  let commentItems3 = useRef<Array<Icomment>>([]);
+  let commentItems4= useRef<Array<Icomment>>([]);
+  let commentItems5 = useRef<Array<Icomment>>([]);
+  let [commentItems, setCom] = useState<Array<Icomment>>([]);
   let oldMark: number;
   let startPos = {
     x:0,
@@ -42,19 +42,19 @@ export default function Comment(props: IProps) {
       const item = starDataList[index]
       switch (item.starValue) {
         case 1:
-          commentItems1 = item.dataList
+          commentItems1.current = item.dataList
           break
         case 2:
-          commentItems2 = item.dataList
+          commentItems2.current = item.dataList
           break
         case 3:
-          commentItems3 = item.dataList
+          commentItems3.current = item.dataList
           break
         case 4:
-          commentItems4 = item.dataList
+          commentItems4.current = item.dataList
           break
         case 5:
-          commentItems5 = item.dataList
+          commentItems5.current = item.dataList
           break
       }
       evaluationStarIdArr.push(item.evaluationStarId)
@@ -72,17 +72,18 @@ export default function Comment(props: IProps) {
       let starItemFirstX = 20;
       if(starIconFirst != null) {
         starIconFirstX = isLandscape
-        ? Number(starIconFirst.getBoundingClientRect().left -(starIconFirst.clientWidth + starItemFirst.clientWidth / 2))
-        : Number(starIconFirst.getBoundingClientRect().left);
+        ? Number(starIconFirst.getBoundingClientRect().right -(starIconFirst.clientWidth + starItemFirst.clientWidth / 2))
+        : Number(starIconFirst.getBoundingClientRect().right);
 
         starItemFirstX = starItemFirst.clientWidth
+        for (let i = 0; i < 5; i++) {
+          const starPosition = starIconFirstX + i * starItemFirstX
+          starPositionArray.current.push(starPosition)
+        }
       }
 
 
-      for (let i = 0; i < 5; i++) {
-        const starPosition = starIconFirstX + i * starItemFirstX
-        starPositionArray.push(starPosition)
-      }
+
   }
 
   const touchstartStar = (event: MouseEvent) => {
@@ -97,14 +98,13 @@ export default function Comment(props: IProps) {
     //  记下旧mark值
     // let oldMark = mark
     // const touch = event.target //  touches数组对象获得屏幕上所有的touch，取第一个touch
-    console.log('touchStar---', event.pageX)
-    
+
     startPos = {
       x: event.pageX,
       y: event.pageY,
     } //  取第一个touch的坐标值
-    for (let index = 0; index < starPositionArray.length; index++) {
-      if (startPos.x > starPositionArray[index]) {
+    for (let index = 0; index < starPositionArray.current.length; index++) {
+      if (startPos.x > starPositionArray.current[index]) {
         useMark(index + 1)
         evaluationStarId = evaluationStarIdArr[index]
       }
@@ -134,9 +134,8 @@ export default function Comment(props: IProps) {
     const isScrolling = Math.abs(endPos.x) < Math.abs(endPos.y) ? 1 : 0 // isScrolling为1时，表示纵向滑动，0为横向滑动
     if (isScrolling === 0) {
       event.preventDefault() //  阻止触摸事件的默认行为，即阻止滚屏
-      for (let index = 0; index < starPositionArray.length; index++) {
-        if (startPos.x + endPos.x > starPositionArray[index]) {
-          console.log(isScrolling)
+      for (let index = 0; index < starPositionArray.current.length; index++) {
+        if (endPos.x > starPositionArray.current[index]) {
           useMark(index + 1)
           evaluationStarId = evaluationStarIdArr[index]
         }
@@ -144,7 +143,7 @@ export default function Comment(props: IProps) {
     }
   }
 
-  const touchendStar = (event: TouchEvent) => {
+  const touchendStar = (event: MouseEvent) => {
     // 判断默认行为是否可以被禁用
     // if (event.cancelable) {
     //   // 判断默认行为是否已经被禁用
@@ -152,7 +151,6 @@ export default function Comment(props: IProps) {
     //     event.preventDefault()
     //   }
     // }
-
     if (mark === 5 && oldMark < 5) {
       comments = []
       commentIds = []
@@ -163,30 +161,30 @@ export default function Comment(props: IProps) {
     }
     switch (mark) {
       case 0:
-        remark.current = '您对本次学习满意吗'
+        setRemark('您对本次学习满意吗')
         break
       case 1:
-        remark.current = '非常不满意，各方面很差'
-        commentItems = commentItems1
+        setRemark('非常不满意，各方面很差')
+        setCom(commentItems1.current.concat())
         break
       case 2:
-        remark.current = '不满意，比较差'
-        commentItems = commentItems2
+        setRemark('不满意，比较差')
+        setCom(commentItems2.current.concat())
         break
       case 3:
-        remark.current = '一般，需改善'
-        commentItems = commentItems3
+        setRemark('一般，需改善')
+        setCom(commentItems3.current.concat())
         break
       case 4:
-        remark.current = '比较满意，仍可改善'
-        commentItems = commentItems4
+        setRemark('比较满意，仍可改善')
+        setCom(commentItems4.current.concat())
         break
       case 5:
-        remark.current = '非常满意，无可挑剔'
-        commentItems = commentItems5
+        setRemark('非常满意，无可挑剔')
+        setCom(commentItems5.current.concat())
         break
     }
-    console.log(remark.current, mark)
+    console.log(commentItems, '----')
   }
 
   const clickComentItem = (item: Icomment) => {
@@ -204,29 +202,14 @@ export default function Comment(props: IProps) {
   useEffect(() => { // useEffect执行两次，解决办法：1.取消react18的严格模式；2.增加判断是否为null
     getStar();
     starDistance()
-    // const starContainer:HTMLDivElement = document.getElementById('starContainer') as HTMLDivElement;
-
-    // if(starContainer != null) {
-    //   starContainer.addEventListener('touchstart', touchstartStar)
-    //   starContainer.addEventListener('touchmove', touchmoveStar)
-    //   starContainer.addEventListener('click', touchendStar)
-    // }
-
-    // return () => {
-    //   if(starContainer != null) {
-    //     starContainer.removeEventListener('touchstart', touchstartStar)
-    //     starContainer.removeEventListener('touchmove', touchmoveStar)
-    //     starContainer.removeEventListener('click', touchendStar)
-    //   }
-    // }
   }, [])
   return (
     <>
     <div className={isLandscape ? 'star-contain-compont-isLandscape' : 'star-contain-compont'}>
-      <div id="starContainer" className="star-contain" 
-      onMouseEnter={(e:MouseEvent<HTMLDivElement>) => touchstartStar(e)} 
+      <div id="starContainer" className="star-contain"
+      onMouseEnter={(e:MouseEvent<HTMLDivElement>) => touchstartStar(e)}
       onMouseMove={(e:MouseEvent<HTMLDivElement>) => touchmoveStar(e)}
-      onTouchEnd={(e:TouchEvent<HTMLDivElement>) => touchendStar(e)}
+      onMouseLeave={(e:MouseEvent<HTMLDivElement>) => touchendStar(e)}
       >
         <div id="starItemFirst" className="star-item">
           <img
@@ -248,7 +231,7 @@ export default function Comment(props: IProps) {
           <img className="star-icon" src={mark > 4 ? activeStar : defaultStar} />
         </div>
       </div>
-      <p className={mark > 0 ? 'active remark-landscape remark footer' : 'remark-landscape remark footer'}>{remark.current}</p>
+      <p className={mark > 0 ? 'active remark-landscape remark footer' : 'remark-landscape remark footer'}>{remark}</p>
 
       {
         mark > 0 ? (
