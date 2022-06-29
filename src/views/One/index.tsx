@@ -1,4 +1,4 @@
-import React, { createContext, useRef, useState } from 'react'
+import React, { createContext, useEffect, useRef, useState } from 'react'
 import { Modal } from 'antd';
 import Cartoon from '@/components/Cartoon'
 import Comment from '@/components/Comment'
@@ -14,7 +14,7 @@ const tabItems = [
 export default function One() {
   const swiperRef = useRef(null)
   const [activeIndex, setActiveIndex] = useState(0)
-  const [isModalVisible, setIsModalVisible] = useState(true);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -27,6 +27,7 @@ export default function One() {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
+
 
   return (
     <>

@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useEffect, useRef, useState, ReactNode } from 'react'
+import React, { MouseEvent, TouchEvent, useEffect, useRef, useState, useMemo } from 'react'
 import { Checkbox } from 'antd';
 import defaultStar from '@/assets/image/icon_star_default@2x.png'
 import activeStar from '@/assets/image/icon_star_pre@2x.png'
@@ -17,7 +17,7 @@ export default function Comment(props: IProps) {
 
   const {isLandscape} = props;
   const [mark, useMark] = useState(0); // 几颗星星
-  let remark = '您对本次学习满意吗?';
+  let remark = useRef('您对本次学习满意吗?');
   let evaluationStarId = 0;
   let evaluationStarIdArr: any[] = []; // 星值id数组
   let starPositionArray: number[] = [];
@@ -85,8 +85,7 @@ export default function Comment(props: IProps) {
       }
   }
 
-  const touchstartStar = (event: TouchEvent) => {
-    console.log('touchStar---')
+  const touchstartStar = (event: MouseEvent) => {
     // 判断默认行为是否可以被禁用
     if (event.cancelable) {
       // 判断默认行为是否已经被禁用
@@ -96,11 +95,13 @@ export default function Comment(props: IProps) {
     }
 
     //  记下旧mark值
-    let oldMark = mark
-    const touch = event.targetTouches[0] //  touches数组对象获得屏幕上所有的touch，取第一个touch
+    // let oldMark = mark
+    // const touch = event.target //  touches数组对象获得屏幕上所有的touch，取第一个touch
+    console.log('touchStar---', event.pageX)
+    
     startPos = {
-      x: touch.pageX,
-      y: touch.pageY,
+      x: event.pageX,
+      y: event.pageY,
     } //  取第一个touch的坐标值
     for (let index = 0; index < starPositionArray.length; index++) {
       if (startPos.x > starPositionArray[index]) {
@@ -110,7 +111,7 @@ export default function Comment(props: IProps) {
     }
   }
 
-  const touchmoveStar = (event: TouchEvent) => {
+  const touchmoveStar = (event: MouseEvent) => {
     // 判断默认行为是否可以被禁用
     if (event.cancelable) {
       // 判断默认行为是否已经被禁用
@@ -120,22 +121,22 @@ export default function Comment(props: IProps) {
     }
 
     //  当屏幕有多个touch或者页面被缩放过，就不执行move操作
-    if (event.targetTouches.length > 1) {
-      return
-    }
+    // if (event.targetTouches.length > 1) {
+    //   return
+    // }
 
-    const touch = event.targetTouches[0]
+    // const touch = event.targetTouches[0]
     const endPos = {
-      x: touch.pageX - startPos.x,
-      y: touch.pageY - startPos.y,
+      x: event.pageX - startPos.x,
+      y: event.pageY - startPos.y,
     }
 
     const isScrolling = Math.abs(endPos.x) < Math.abs(endPos.y) ? 1 : 0 // isScrolling为1时，表示纵向滑动，0为横向滑动
-
     if (isScrolling === 0) {
       event.preventDefault() //  阻止触摸事件的默认行为，即阻止滚屏
       for (let index = 0; index < starPositionArray.length; index++) {
         if (startPos.x + endPos.x > starPositionArray[index]) {
+          console.log(isScrolling)
           useMark(index + 1)
           evaluationStarId = evaluationStarIdArr[index]
         }
@@ -145,12 +146,12 @@ export default function Comment(props: IProps) {
 
   const touchendStar = (event: TouchEvent) => {
     // 判断默认行为是否可以被禁用
-    if (event.cancelable) {
-      // 判断默认行为是否已经被禁用
-      if (!event.defaultPrevented) {
-        event.preventDefault()
-      }
-    }
+    // if (event.cancelable) {
+    //   // 判断默认行为是否已经被禁用
+    //   if (!event.defaultPrevented) {
+    //     event.preventDefault()
+    //   }
+    // }
 
     if (mark === 5 && oldMark < 5) {
       comments = []
@@ -162,29 +163,30 @@ export default function Comment(props: IProps) {
     }
     switch (mark) {
       case 0:
-        remark = '您对本次学习满意吗'
+        remark.current = '您对本次学习满意吗'
         break
       case 1:
-        remark = '非常不满意，各方面很差'
+        remark.current = '非常不满意，各方面很差'
         commentItems = commentItems1
         break
       case 2:
-        remark = '不满意，比较差'
+        remark.current = '不满意，比较差'
         commentItems = commentItems2
         break
       case 3:
-        remark = '一般，需改善'
+        remark.current = '一般，需改善'
         commentItems = commentItems3
         break
       case 4:
-        remark = '比较满意，仍可改善'
+        remark.current = '比较满意，仍可改善'
         commentItems = commentItems4
         break
       case 5:
-        remark = '非常满意，无可挑剔'
+        remark.current = '非常满意，无可挑剔'
         commentItems = commentItems5
         break
     }
+    console.log(remark.current, mark)
   }
 
   const clickComentItem = (item: Icomment) => {
@@ -199,26 +201,33 @@ export default function Comment(props: IProps) {
   }
 
 
-  useEffect(() => {
+  useEffect(() => { // useEffect执行两次，解决办法：1.取消react18的严格模式；2.增加判断是否为null
     getStar();
     starDistance()
-    const starContainer:HTMLDivElement = document.getElementById('starContainer') as HTMLDivElement;
-    if(starContainer != null) {
-      starContainer.addEventListener('touchstart', touchstartStar)
-      starContainer.addEventListener('touchmove', touchmoveStar)
-      starContainer.addEventListener('touchend', touchendStar)
-    }
+    // const starContainer:HTMLDivElement = document.getElementById('starContainer') as HTMLDivElement;
 
-    return () => {
-      starContainer.removeEventListener('touchstart', touchstartStar)
-      starContainer.removeEventListener('touchmove', touchmoveStar)
-      starContainer.removeEventListener('touchend', touchendStar)
-    }
+    // if(starContainer != null) {
+    //   starContainer.addEventListener('touchstart', touchstartStar)
+    //   starContainer.addEventListener('touchmove', touchmoveStar)
+    //   starContainer.addEventListener('click', touchendStar)
+    // }
+
+    // return () => {
+    //   if(starContainer != null) {
+    //     starContainer.removeEventListener('touchstart', touchstartStar)
+    //     starContainer.removeEventListener('touchmove', touchmoveStar)
+    //     starContainer.removeEventListener('click', touchendStar)
+    //   }
+    // }
   }, [])
   return (
     <>
     <div className={isLandscape ? 'star-contain-compont-isLandscape' : 'star-contain-compont'}>
-      <div id="starContainer" className="star-contain">
+      <div id="starContainer" className="star-contain" 
+      onMouseEnter={(e:MouseEvent<HTMLDivElement>) => touchstartStar(e)} 
+      onMouseMove={(e:MouseEvent<HTMLDivElement>) => touchmoveStar(e)}
+      onTouchEnd={(e:TouchEvent<HTMLDivElement>) => touchendStar(e)}
+      >
         <div id="starItemFirst" className="star-item">
           <img
             id="starIconFirst"
@@ -239,7 +248,7 @@ export default function Comment(props: IProps) {
           <img className="star-icon" src={mark > 4 ? activeStar : defaultStar} />
         </div>
       </div>
-      <p className={mark > 0 ? 'active remark-landscape remark footer' : 'remark-landscape remark footer'}>{remark}</p>
+      <p className={mark > 0 ? 'active remark-landscape remark footer' : 'remark-landscape remark footer'}>{remark.current}</p>
 
       {
         mark > 0 ? (
