@@ -2,6 +2,7 @@ import { ReactNode } from 'react'
 import One from "../views/One";
 import Two from "../views/Two";
 import StudyReport from "../views/studyReport";
+import ReactHook from '../views/ReactHook'
 
 interface IRoute {
   path: string;
@@ -30,5 +31,10 @@ export const router: Array<IRoute> = [
     path: 'studyReport',
     name: 'studyReport',
     element: <StudyReport />,
+  },
+  {
+    path: 'react_hook',
+    name: 'react_hook',
+    element: <ReactHook />,
   }
 ];
