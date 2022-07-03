@@ -10,14 +10,26 @@ export default function English() {
           <h1>热门词汇10000+</h1>
           <button className={style.header_btn}>切换词汇</button>
         </div>
-        <p>已掌握 <span className={style.special}>10</span>/78</p>
+        <p className={style.doen}>已掌握 <span className={style.special}>10</span>/78</p>
         <div className={style.progress}>
           <div className={style.bar}>
             <div className={style.sucess}></div>
           </div>
           <span className={style.gray}>12%</span>
         </div>
+        <div className={style.count}>
+          <div className={style.study}>
+            <span className={style.number}>5</span>
+            <span className={style.gray}>上一次已经掌握单词</span>
+          </div>
+          <div className={style.study}>
+            <span className={style.number}>10</span>
+            <span className={style.gray}>上次学习至</span>
+          </div>
         </div>
+        <div className={style.doen}><Button type="primary" className={style.goto}>进入学习</Button></div>
+        <div className={style.doen}><Button>查看我的词本</Button></div>
+      </div>
     </>
   )
 }
