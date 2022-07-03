@@ -43,8 +43,8 @@ const items: MenuItem[] = [
     getItem(SubMenuType(router[3]), '3'),
     getItem(SubMenuType(router[4]), '4'),
   ]),
-  getItem('Navigation Two', 'sub2', <AppstoreOutlined />, [
-    getItem('Option 5', '5'),
+  getItem('English', 'sub2', <AppstoreOutlined />, [
+    getItem(SubMenuType(router[5]), '5'),
     getItem('Option 6', '6'),
     getItem('Submenu', 'sub3', null, [getItem('Option 7', '7'), getItem('Option 8', '8')]),
   ]),
@@ -61,7 +61,7 @@ const rootSubmenuKeys = ['sub1', 'sub2', 'sub4'];
 
 const MenuCom: React.FC = () => {
   const [openKeys, setOpenKeys] = useState(['sub1']);
- 
+
   const onOpenChange: MenuProps['onOpenChange'] = keys => {
     const latestOpenKey = keys.find(key => openKeys.indexOf(key) === -1);
     if (rootSubmenuKeys.indexOf(latestOpenKey!) === -1) {

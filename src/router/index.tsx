@@ -3,6 +3,7 @@ import One from "../views/One";
 import Two from "../views/Two";
 import StudyReport from "../views/studyReport";
 import ReactHook from '../views/ReactHook'
+import English from '../views/English'
 
 interface IRoute {
   path: string;
@@ -36,5 +37,10 @@ export const router: Array<IRoute> = [
     path: 'react_hook',
     name: 'react_hook',
     element: <ReactHook />,
+  },
+  {
+    path: 'english',
+    name: 'english_index',
+    element: <English />,
   }
 ];

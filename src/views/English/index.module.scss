@@ -1,0 +1,41 @@
+.container {
+  height: 100vh;
+  background: url(../../assets/image/top_bg_writing.png) no-repeat 0 0;
+}
+
+.header {
+  text-align: center;
+  display: flex;
+  padding-top: 50px;
+  justify-content: space-around;
+  .header_btn {
+    font-size: 14px;
+    font-weight: 700;
+    height: 31px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background-color: rgba(32, 158, 130, .4);
+    color: #209e85;
+    box-shadow: 0 1px 1px 0 rgba(55, 63, 59, .1);
+    border: none;
+  }
+}
+.special {
+  color: #209e85;
+}
+.gray {
+  color: #7c7c7c;
+  font-size: 14px;
+}
+.progress {
+  display: flex;
+  .bar {
+    width: 80%;
+    margin: 20px 20px 20px 10px;
+    background-color: #ecebf1;
+    height: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+}
