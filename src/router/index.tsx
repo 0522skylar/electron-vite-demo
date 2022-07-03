@@ -4,6 +4,7 @@ import Two from "../views/Two";
 import StudyReport from "../views/studyReport";
 import ReactHook from '../views/ReactHook'
 import English from '../views/English'
+import Grade from '../views/Grade'
 
 interface IRoute {
   path: string;
@@ -42,5 +43,10 @@ export const router: Array<IRoute> = [
     path: 'english',
     name: 'english_index',
     element: <English />,
+  },
+  {
+    path: 'grade',
+    name: 'grade',
+    element: <Grade />,
   }
 ];
