@@ -1,8 +1,11 @@
 import React, { createContext, useEffect, useRef, useState } from 'react'
+import {useNavigate} from 'react-router-dom'
 import { Button } from 'antd';
 import style from './index.module.scss'
 
 export default function English() {
+  const router = useNavigate();
+
   return (
     <>
       <div className={style.container}>
@@ -27,7 +30,9 @@ export default function English() {
             <span className={style.gray}>上次学习至</span>
           </div>
         </div>
-        <div className={style.doen}><Button type="primary" className={style.goto}>进入学习</Button></div>
+        <div className={style.doen}>
+          <Button type="primary" className={style.goto} onClick={() => {router("/grade")}}>进入学习</Button>
+        </div>
         <div className={style.doen}><Button>查看我的词本</Button></div>
       </div>
     </>

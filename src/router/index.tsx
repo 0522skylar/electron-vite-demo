@@ -5,6 +5,7 @@ import StudyReport from "../views/studyReport";
 import ReactHook from '../views/ReactHook'
 import English from '../views/English'
 import Grade from '../views/Grade'
+import Sort from '../views/Sort'
 
 interface IRoute {
   path: string;
@@ -48,5 +49,10 @@ export const router: Array<IRoute> = [
     path: 'grade',
     name: 'grade',
     element: <Grade />,
+  },
+  {
+    path: 'sort',
+    name: 'sort',
+    element: <Sort />,
   }
 ];

@@ -1,0 +1,34 @@
+.rightBox {
+  position: fixed;
+  top: 50px;
+  right: 10px;
+  width: 30px;
+  border: 1px solid #ccc;
+  .word {
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+  }
+}
+.contianer {
+  position: relative;
+}
+.sides {
+  padding: 30px 50px 30px 30px;
+  h3 {
+    color: #209e85;
+    font-size: large;
+  }
+  .line {
+    height: 50px;
+    line-height: 50px;
+    padding-left: 30px;
+    border-bottom: 1px dashed #209e85;
+    cursor: pointer;
+    &:hover {
+      background-color: #9ad4cd;
+    }
+  }
+}
