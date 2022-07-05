@@ -7,6 +7,14 @@ export default function Sort() {
   useEffect(() => {
     // const data  = require('../../data/gaokao/list.json');
     // console.log(data);
+    fetch('http://localhost/admin/gaokao', {
+      method: 'get',
+    }).then((response) => response.json())
+    .then((res) => {
+      console.log(res, '-----------')
+    }).catch((err) => {
+      console.log(err, 'error');
+    })
   }, [])
 
   return (
