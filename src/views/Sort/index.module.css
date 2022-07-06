@@ -1,17 +1,32 @@
-.rightBox {
-  position: fixed;
-  top: 50px;
-  right: 10px;
-  width: 30px;
-  border: 1px solid #ccc;
+.contianer {
+  width: 80vw;
 }
 
-.rightBox .word {
-  height: 30px;
-  line-height: 30px;
-  text-align: center;
-  border-bottom: 1px solid #ccc;
-  cursor: pointer;
+.rightBox {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.rightBox li {
+  list-style: none;
+}
+
+.rightBox .lis {
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+.rightBox .lis ul {
+  display: flex;
+}
+
+.rightBox .lis ul li {
+  flex: 1;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid pink;
+  margin: 5px 10px;
 }
 
 .contianer {
@@ -22,7 +37,7 @@
   padding: 30px 50px 30px 30px;
 }
 
-.sides h3 {
+.sides p {
   color: #209e85;
   font-size: large;
 }

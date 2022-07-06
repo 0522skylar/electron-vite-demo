@@ -1,32 +1,58 @@
-.rightBox {
-  position: fixed;
-  top: 50px;
-  right: 10px;
-  width: 30px;
-  border: 1px solid #ccc;
-  .word {
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    border-bottom: 1px solid #ccc;
-    cursor: pointer;
-  }
+.contianer{
+  width: 80vw;
 }
+.rightBox {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+
+  li {
+    list-style: none;
+  }
+  .lis {
+    overflow-x: scroll;
+    white-space: nowrap; //当文字一行显示
+
+    ul {
+      display: flex;
+
+      li {
+        flex: 1;
+        padding: 10px;
+        box-sizing: border-box;
+        border: 1px solid pink;
+        margin: 5px 10px;
+      }
+    }
+  }
+
+  //隐藏滚动条
+  // ::-webkit-scrollbar {
+  //   width: 0;
+  //   height: 0;
+  //   opacity: 0;
+  // }
+}
+
 .contianer {
   position: relative;
 }
+
 .sides {
   padding: 30px 50px 30px 30px;
-  h3 {
+
+  p {
     color: #209e85;
     font-size: large;
   }
+
   .line {
     height: 50px;
     line-height: 50px;
     padding-left: 30px;
     border-bottom: 1px dashed #209e85;
     cursor: pointer;
+
     &:hover {
       background-color: #9ad4cd;
     }
