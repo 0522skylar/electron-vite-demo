@@ -1,27 +1,42 @@
 .contianer{
   width: 80vw;
 }
+.site-back-top-basic {
+  color: rgba(64, 64, 64, 0.6);
+}
+.goUp{
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  border-radius: 4px;
+  background-color: #1088e9;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+}
 .rightBox {
-  width: 100%;
-  position: relative;
+  width: 80%;
+  position: fixed;
+  top: 0;
+  left: 200px;
   overflow: hidden;
-
-  li {
-    list-style: none;
-  }
+  background-color: #eefff6;
   .lis {
-    overflow-x: scroll;
     white-space: nowrap; //当文字一行显示
 
-    ul {
+    .anch {
       display: flex;
+      height: 84px;
+    }
 
-      li {
-        flex: 1;
-        padding: 10px;
-        box-sizing: border-box;
-        border: 1px solid pink;
-        margin: 5px 10px;
+    .progress {
+      display: inline-block;
+      flex: 1;
+      box-sizing: border-box;
+      padding: 0px;
+      border-right: 1px solid #209e85;;
+      a{
+        padding: 20px;
       }
     }
   }

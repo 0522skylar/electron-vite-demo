@@ -1,7 +1,8 @@
 import React, { createContext, useEffect, useRef, useState } from 'react'
 import {useNavigate} from 'react-router-dom'
-import { Button } from 'antd';
+import { BackTop, Anchor } from 'antd';
 import style from './index.module.scss'
+const { Link } = Anchor;
 // import data from '../../data/gaokao/list.json'
 export default function Sort() {
   const [wordList, setWordList]= useState<Array<Array<string>>>([]);
@@ -33,16 +34,30 @@ export default function Sort() {
     setWordList(ans);
   }
 
+  const handleClick = (
+    e: React.MouseEvent<HTMLElement>,
+    link: {
+      title: React.ReactNode;
+      href: string;
+    },
+  ) => {
+    e.preventDefault();
+    console.log(link);
+  };
+
   return (
     <>
       <div className={style.contianer}>
         <h1>单词本</h1>
 
+        <BackTop>
+          <div className={style.goUp}>UP</div>
+        </BackTop>
         {
           wordList.map((item: Array<string>, index) => {
             return (
               <div className={style.sides} key={index}>
-                <p id={'tt' + String.fromCharCode(index + 65)}>{String.fromCharCode(index + 65)}</p>
+                <p id={String.fromCharCode(index + 65)}>{String.fromCharCode(index + 65)}</p>
                 {item.map((nItem) => <div className={style.line} key={nItem}>{nItem}</div> )}
               </div>
             )
@@ -51,17 +66,17 @@ export default function Sort() {
 
         <div className={style.rightBox}>
           <div className={style.lis}>
-            <ul>
+            <Anchor affix={false} className={style.anch}>
             {
               wordList.map((item: Array<string>, index) => {
-                return <li className={style.word} key={index}>
-                  <a href={'#tt' + String.fromCharCode(index + 65)}>
-                    {String.fromCharCode(index + 65)}
-                  </a>
-                </li>
+                return <Link
+                href={"#" + String.fromCharCode(index + 65)}
+                title={String.fromCharCode(index + 65)}
+                className={style.progress}
+                />
               })
             }
-            </ul>
+          </Anchor>
           </div>
         </div>
       </div>

@@ -2,31 +2,49 @@
   width: 80vw;
 }
 
-.rightBox {
-  width: 100%;
-  position: relative;
-  overflow: hidden;
+.site-back-top-basic {
+  color: rgba(64, 64, 64, 0.6);
 }
 
-.rightBox li {
-  list-style: none;
+.goUp {
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  border-radius: 4px;
+  background-color: #1088e9;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+}
+
+.rightBox {
+  width: 80%;
+  position: fixed;
+  top: 0;
+  left: 200px;
+  overflow: hidden;
+  background-color: #eefff6;
 }
 
 .rightBox .lis {
-  overflow-x: scroll;
   white-space: nowrap;
 }
 
-.rightBox .lis ul {
+.rightBox .lis .anch {
   display: flex;
+  height: 84px;
 }
 
-.rightBox .lis ul li {
+.rightBox .lis .progress {
+  display: inline-block;
   flex: 1;
-  padding: 10px;
   box-sizing: border-box;
-  border: 1px solid pink;
-  margin: 5px 10px;
+  padding: 0px;
+  border-right: 1px solid #209e85;
+}
+
+.rightBox .lis .progress a {
+  padding: 20px;
 }
 
 .contianer {
