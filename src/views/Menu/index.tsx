@@ -47,12 +47,12 @@ const items: MenuItem[] = [
     getItem(SubMenuType(router[5]), '5'),
     getItem(SubMenuType(router[6]), '6'),
     getItem(SubMenuType(router[7]), '13'),
-    getItem('Submenu', 'sub3', null, [getItem('Option 7', '7'), getItem('Option 8', '8')]),
+    getItem('Submenu', 'sub3', null, [getItem(SubMenuType(router[11]), '7'), getItem('Option 8', '8')]),
   ]),
   getItem('Navigation Three', 'sub4', <SettingOutlined />, [
-    getItem('Option 9', '9'),
-    getItem('Option 10', '10'),
-    getItem('Option 11', '11'),
+    getItem(SubMenuType(router[8]), '9'),
+    getItem(SubMenuType(router[9]), '10'),
+    getItem(SubMenuType(router[10]), '11'),
     getItem('Option 12', '12'),
   ]),
 ];

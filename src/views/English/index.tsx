@@ -33,7 +33,7 @@ export default function English() {
         <div className={style.doen}>
           <Button type="primary" className={style.goto} onClick={() => {router("/grade")}}>进入学习</Button>
         </div>
-        <div className={style.doen}><Button>查看我的词本</Button></div>
+        <div className={style.doen}><Button onClick={() => {router("/sort")}}>查看我的词本</Button></div>
       </div>
     </>
   )

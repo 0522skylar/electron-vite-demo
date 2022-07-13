@@ -66,13 +66,14 @@ export default function Sort() {
 
         <div className={style.rightBox}>
           <div className={style.lis}>
-            <Anchor affix={false} className={style.anch}>
+            <Anchor affix={false} className={style.anch} onClick={handleClick}>
             {
               wordList.map((item: Array<string>, index) => {
                 return <Link
-                href={"#" + String.fromCharCode(index + 65)}
-                title={String.fromCharCode(index + 65)}
-                className={style.progress}
+                  href={"#" + String.fromCharCode(index + 65)}
+                  title={String.fromCharCode(index + 65)}
+                  className={style.progress}
+                  key={index}
                 />
               })
             }

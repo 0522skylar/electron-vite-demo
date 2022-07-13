@@ -6,6 +6,10 @@ import ReactHook from '../views/ReactHook'
 import English from '../views/English'
 import Grade from '../views/Grade'
 import Sort from '../views/Sort'
+import NoAuthorized from '../views/Error/noAuthorized'
+import NoFind from '../views/Error/noFind'
+import NoServer from '../views/Error/noServer'
+import WordStudy from '../views/WordStudy'
 
 interface IRoute {
   path: string;
@@ -54,5 +58,25 @@ export const router: Array<IRoute> = [
     path: 'sort',
     name: 'sort',
     element: <Sort />,
+  },
+  {
+    path: '403',
+    name: '403',
+    element: <NoAuthorized />,
+  },
+  {
+    path: '404',
+    name: '404',
+    element: <NoFind />,
+  },
+  {
+    path: '500',
+    name: '500',
+    element: <NoServer />,
+  },
+  {
+    path: 'wordStudy',
+    name: 'WordStudy',
+    element: <WordStudy />,
   }
 ];
