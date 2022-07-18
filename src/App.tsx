@@ -19,7 +19,6 @@ interface IRoute {
 const App: React.FC = () => {
   return (
     <div className={styles.app}>
-          
         <div className={styles.leftBox}>
           <BottomBar></BottomBar>
         </div>
@@ -31,7 +30,7 @@ const App: React.FC = () => {
               })
             }
           </Routes>
-          <Outlet/>  
+          <Outlet/>
         </div>
     </div>
   )

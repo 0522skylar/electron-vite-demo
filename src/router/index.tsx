@@ -10,6 +10,7 @@ import NoAuthorized from '../views/Error/noAuthorized'
 import NoFind from '../views/Error/noFind'
 import NoServer from '../views/Error/noServer'
 import WordStudy from '../views/WordStudy'
+import My from '../views/My'
 
 interface IRoute {
   path: string;
@@ -78,5 +79,10 @@ export const router: Array<IRoute> = [
     path: 'wordStudy',
     name: 'WordStudy',
     element: <WordStudy />,
+  },
+  {
+    path: 'my',
+    name: 'My',
+    element: <My />,
   }
 ];

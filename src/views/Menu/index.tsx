@@ -42,6 +42,7 @@ const items: MenuItem[] = [
     getItem(SubMenuType(router[2]), '2'),
     getItem(SubMenuType(router[3]), '3'),
     getItem(SubMenuType(router[4]), '4'),
+    getItem(SubMenuType(router[12]), '12'),
   ]),
   getItem('English', 'sub2', <AppstoreOutlined />, [
     getItem(SubMenuType(router[5]), '5'),

@@ -1,0 +1,59 @@
+.header {
+  height: 400px;
+  width: 100%;
+  background: url(../../assets/image/headBg.jpg);
+  background-size: cover;
+}
+
+.header .userContent {
+  text-align: center;
+  padding: 30px;
+}
+
+.header .portrait img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.header .userName {
+  padding: 10px;
+  font-size: 25px;
+  font-weight: 700;
+  color: #0f7f34;
+}
+
+.header .userDesc {
+  padding: 20px;
+  color: #287b63;
+  font-size: 20px;
+}
+
+.twoMainTab {
+  margin-top: -70px;
+  position: sticky;
+  top: 0;
+}
+
+.twoMainTab .routerTab {
+  height: 70px;
+  line-height: 70px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.twoMainTab .childRoute {
+  flex: 1;
+  background-color: #5c9f8c;
+  border-radius: 50px 50px 0 0;
+  text-align: center;
+}
+
+.twoMainTab .activeRoute {
+  background-color: #0f7f34;
+}
+
+.body {
+  height: 2000px;
+}
