@@ -54,7 +54,6 @@ const items: MenuItem[] = [
     getItem(SubMenuType(router[8]), '9'),
     getItem(SubMenuType(router[9]), '10'),
     getItem(SubMenuType(router[10]), '11'),
-    getItem('Option 12', '12'),
   ]),
 ];
 

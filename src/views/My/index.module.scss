@@ -53,3 +53,19 @@
 .body {
   height: 2000px;
 }
+
+.box {
+  padding: 20px;
+  .title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #5c9f8c;
+  }
+  .type {
+    color: #0f7f34;
+    font-size: 14px;
+  }
+  .content {
+    line-height: 30px;
+  }
+}
