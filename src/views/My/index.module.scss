@@ -26,6 +26,7 @@
     padding: 20px;
     color: #287b63;
     font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
   }
 }
 
@@ -45,14 +46,32 @@
     background-color: #5c9f8c;
     border-radius: 50px 50px 0 0;
     text-align: center;
+    color: #fff;
+    font-size: 24px;
   }
   .activeRoute {
     background-color: #0f7f34;
   }
+  .subjectTab {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 30px 0;
+    background-color: #e7f2ea;
+    // background-color: rgba($color: #0f7f34, $alpha: 0.1);
+    div {
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .sub_active {
+      border-bottom: 5px solid #5c9f8c;
+      border-radius: 10px;
+      background-color: rgba($color: #5c9f8c, $alpha: 0.4);
+      color: #fff;
+    }
+  }
 }
-.body {
-  height: 2000px;
-}
+
 
 .box {
   padding: 20px;

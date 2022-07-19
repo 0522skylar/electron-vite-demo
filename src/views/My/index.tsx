@@ -72,42 +72,26 @@ export default function My() {
             <div className={style.childRoute}>英语</div>
           </div>
           <div className={style.subjectTab}>
-            <Tabs defaultActiveKey="1" type="card" size={'large'}>
-              <TabPane tab="寓言" key="1">
-                {
-                  fable.map((item) => (
-                    <div className={style.box} key={item._id}>
-                      <div className={style.title}>{ item.title }</div>
-                      <div className={style.type}>{ item.storytype }</div>
-                      <div className={style.content}>{ item.content }</div>
-                    </div>
-                  ))
-                }
-              </TabPane>
-              <TabPane tab="睡前" key="2">
-                {
-                  beforeBed.map((item) => (
-                    <div className={style.box} key={item._id}>
-                      <div className={style.title}>{ item.title }</div>
-                      <div className={style.type}>{ item.storytype }</div>
-                      <div className={style.content}>{ item.content }</div>
-                    </div>
-                  ))
-                }
-              </TabPane>
-              <TabPane tab="童话" key="3">
-                {
-                  fairy.map((item) => (
-                    <div className={style.box} key={item._id}>
-                      <div className={style.title}>{ item.title }</div>
-                      <div className={style.type}>{ item.storytype }</div>
-                      <div className={style.content}>{ item.content }</div>
-                    </div>
-                  ))
-                }
-              </TabPane>
-            </Tabs>
+            <div className={style.sub_active}>寓言</div>
+            <div>睡前</div>
+            <div>童话</div>
+            <div>魔力</div>
+            <div>益智</div>
+            <div>口才</div>
+            <div>围棋</div>
           </div>
+        </div>
+
+        <div className={style.content}>
+          {
+            fable.map((item) => (
+              <div className={style.box} key={item._id}>
+                <div className={style.title}>{ item.title }</div>
+                <div className={style.type}>{ item.storytype }</div>
+                <div className={style.content}>{ item.content }</div>
+              </div>
+            ))
+          }
         </div>
       </div>
     </>

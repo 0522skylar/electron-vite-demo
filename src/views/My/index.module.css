@@ -28,6 +28,7 @@
   padding: 20px;
   color: #287b63;
   font-size: 20px;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .twoMainTab {
@@ -48,12 +49,49 @@
   background-color: #5c9f8c;
   border-radius: 50px 50px 0 0;
   text-align: center;
+  color: #fff;
+  font-size: 24px;
 }
 
 .twoMainTab .activeRoute {
   background-color: #0f7f34;
 }
 
-.body {
-  height: 2000px;
+.twoMainTab .subjectTab {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 30px 0;
+  background-color: #e7f2ea;
+}
+
+.twoMainTab .subjectTab div {
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.twoMainTab .subjectTab .sub_active {
+  border-bottom: 5px solid #5c9f8c;
+  border-radius: 10px;
+  background-color: rgba(92, 159, 140, 0.4);
+  color: #fff;
+}
+
+.box {
+  padding: 20px;
+}
+
+.box .title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #5c9f8c;
+}
+
+.box .type {
+  color: #0f7f34;
+  font-size: 14px;
+}
+
+.box .content {
+  line-height: 30px;
 }
