@@ -31,6 +31,10 @@
   font-family: 'Courier New', Courier, monospace;
 }
 
+.isTop {
+  background-color: #cdddf2;
+}
+
 .twoMainTab {
   margin-top: -70px;
   position: sticky;
