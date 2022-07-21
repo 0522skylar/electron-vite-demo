@@ -39,8 +39,9 @@ export default function My() {
     const dom: HTMLElement = watchDOM.current  as unknown as HTMLElement;
     let isVisibility = true;
     const io = new IntersectionObserver(() => {
-      isVisibility = !isVisibility;
       setIsTop(isVisibility)
+
+      isVisibility = !isVisibility;
     })
     io.observe(dom);
     return () => {

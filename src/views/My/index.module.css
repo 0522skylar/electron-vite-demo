@@ -32,18 +32,20 @@
 }
 
 .isTop {
-  background-color: #cdddf2;
+  background-color: red;
 }
 
 .twoMainTab {
-  margin-top: -70px;
+  padding: 0 7rem;
+  padding-top: 5rem;
+  margin-top: -10rem;
   position: sticky;
   top: 0;
 }
 
 .twoMainTab .routerTab {
-  height: 70px;
-  line-height: 70px;
+  height: 7rem;
+  line-height: 7rem;
   display: flex;
   justify-content: space-between;
 }
@@ -54,18 +56,19 @@
   border-radius: 50px 50px 0 0;
   text-align: center;
   color: #fff;
-  font-size: 24px;
+  font-size: 40px;
 }
 
 .twoMainTab .activeRoute {
-  background-color: #0f7f34;
+  background-color: #fff;
+  color: #0f7f34;
 }
 
 .twoMainTab .subjectTab {
   display: flex;
   justify-content: space-evenly;
   padding: 30px 0;
-  background-color: #e7f2ea;
+  background-color: #fff;
 }
 
 .twoMainTab .subjectTab div {
@@ -75,6 +78,7 @@
 }
 
 .twoMainTab .subjectTab .sub_active {
+  font-size: 30px;
   border-bottom: 5px solid #5c9f8c;
   border-radius: 10px;
   background-color: rgba(92, 159, 140, 0.4);
