@@ -23,9 +23,42 @@ export default function My() {
     '寓言', '睡前','童话','益智', '口才','魔力','围棋'
   ])
 
+  const tabEle = useRef(null);
   const [isTop, setIsTop] = useState(true);
 
   const watchDOM = useRef(null)
+  const debounce = (fn: Function, wait: number, time?: number) => {
+    let previous: number | null = null; // 记录上一次运行的时间
+    let timer:  number | NodeJS.Timeout | null = null;
+    return function() {
+      let now = +new Date();
+      if (!previous) previous = now;
+      // 当上一次执行的时间与当前的时间差大于设置的执行间隔时长的话，就主动执行一次
+      if (now - previous > time) {
+        clearTimeout(timer);
+        fn();
+        previous = now; // 执行函数后，马上记录当前时间
+      } else {
+        // 否则重新开始新一轮的计时
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          fn();
+        }, wait);
+      }
+    };
+  }
+  const onScroll = () => {
+    let topHeight = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset;
+
+      if(topHeight > 113) {
+        tabEle.current.background = "#b7d8f7";
+        setIsTop(false)
+        // isVisibility = !isVisibility;
+      } else {
+        setIsTop(true)
+        tabEle.current.background = "transparent";
+      }
+  }
   useEffect(() => {
     fetch('http://localhost:80/admin/story', {
       method: 'get',
@@ -43,9 +76,16 @@ export default function My() {
       setIsTop(isVisibility)
       isVisibility = !isVisibility;
     })
-    io.observe(dom);
+
+    // window.addEventListener('scroll', debounce(onScroll, 500))
+    window.addEventListener('scroll', onScroll)
+
+    // io.observe(dom);
     return () => {
       io.disconnect();
+      // window.removeEventListener('scroll', debounce(onScroll, 500))
+      window.removeEventListener('scroll', onScroll)
+
     }
   }, [])
 
@@ -99,7 +139,7 @@ export default function My() {
           </div>
         </div>
 
-        {/* <div className={[style.twoMainTab, isTop ? null : style.isTop].join(' ')}>
+         <div className={[style.twoMainTab, isTop ? null : style.isTop].join(' ')} ref={tabEle}>
           <div className={style.routerTab}>
             <div className={style.childRoute}>字谜</div>
             <div className={`${style.childRoute} ${style.activeRoute}`}>故事</div>
@@ -117,7 +157,7 @@ export default function My() {
               })
             }
           </div>
-        </div> */}
+        </div>
 
         {/* <div className={[style.fixdMain, isTop ? null : style.isTop].join(' ')}>
           <div className={style.routerTab}>
@@ -140,7 +180,7 @@ export default function My() {
           </div>
         </div> */}
 
-        <div className={style.commonMain}>
+        {/* <div className={style.commonMain}>
           <div className={style.routerTab}>
             <div className={style.childRoute}>字谜</div>
             <div className={`${style.childRoute} ${style.activeRoute}`}>故事</div>
@@ -159,9 +199,9 @@ export default function My() {
               })
             }
           </div>
-        </div>
+        </div> */}
 
-        <div className={[style.content].join(' ')}>
+        <div className={style.content}>
           <div className={style.boxCon}>
             {
               content.map((item) => (

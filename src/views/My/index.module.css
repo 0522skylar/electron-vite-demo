@@ -33,60 +33,60 @@
   font-family: 'Courier New', Courier, monospace;
 }
 
-/*
-// 粘性定位
 .isTop {
   background-color: #b7d8f7;
-  // background-color: red;
 }
+
 .twoMainTab {
   padding: 0 2rem;
   padding-top: 5rem;
   margin-top: -18rem;
   position: sticky;
   top: 0;
-  .routerTab {
-    height: 4rem;
-    line-height: 4rem;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .childRoute {
-    flex: 1;
-    background-color: #5c9f8c;
-    border-radius: 50px 50px 0 0;
-    text-align: center;
-    color: #fff;
-    font-size: 20px;
-  }
-  .activeRoute {
-    // background-color: #0f7f34;
-    background-color: #fff;
-    color: #0f7f34;
-  }
-  .subjectTab {
-    display: flex;
-    justify-content: space-evenly;
-    padding: 30px 0;
-    // background-color: #e7f2ea;
-    background-color: #fff;
-    // background-color: rgba($color: #0f7f34, $alpha: 0.1);
-    div {
-      padding: 10px;
-      text-align: center;
-      cursor: pointer;
-    }
-    .sub_active {
-      font-size: 16px;
-      border-bottom: 5px solid #5c9f8c;
-      border-radius: 10px;
-      background-color: rgba($color: #5c9f8c, $alpha: 0.4);
-      color: #fff;
-    }
-  }
 }
-*/
+
+.twoMainTab .routerTab {
+  height: 4rem;
+  line-height: 4rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.twoMainTab .childRoute {
+  flex: 1;
+  background-color: #5c9f8c;
+  border-radius: 50px 50px 0 0;
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+}
+
+.twoMainTab .activeRoute {
+  background-color: #fff;
+  color: #0f7f34;
+}
+
+.twoMainTab .subjectTab {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 30px 0;
+  background-color: #fff;
+}
+
+.twoMainTab .subjectTab div {
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.twoMainTab .subjectTab .sub_active {
+  font-size: 16px;
+  border-bottom: 5px solid #5c9f8c;
+  border-radius: 10px;
+  background-color: rgba(92, 159, 140, 0.4);
+  color: #fff;
+}
+
 /*
 // 固定定位
 .fixdMain {
@@ -144,65 +144,65 @@
   position: fixed;
   margin-top: 0;
   top: 0;
-  width: calc(100vw - 200px);
+  width: calc(100vw - 218px); // 网页上的滚动条18px
   // background-color: red;
 }
 */
+/* 普通流
 .commonMain {
   padding: 0 2rem;
+  // width: calc(100vw - 200px);
   box-sizing: border-box;
   padding-top: 31px;
+  // position: fixed;
   margin-top: -13rem;
   top: 0;
-}
+  .routerTab {
+    height: 4rem;
+    line-height: 4rem;
+    display: flex;
+    justify-content: space-around;
+  }
 
-.commonMain .routerTab {
-  height: 4rem;
-  line-height: 4rem;
-  display: flex;
-  justify-content: space-around;
+  .childRoute {
+    width: 12rem;
+    background-color: #5c9f8c;
+    border-radius: 50px 50px 0 0;
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+  }
+  .activeRoute {
+    // background-color: #0f7f34;
+    background-color: #fff;
+    color: #0f7f34;
+  }
+  .radius {
+    height: 2rem;
+    border-radius: 2rem 2rem 0 0;
+    background-color: #fff;
+  }
+  .subjectTab {
+    display: flex;
+    justify-content: space-evenly;
+    // background-color: #e7f2ea;
+    background-color: #fff;
+    // background-color: rgba($color: #0f7f34, $alpha: 0.1);
+    div {
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .sub_active {
+      font-size: 16px;
+      border-bottom: 5px solid #5c9f8c;
+      border-radius: 10px;
+      background-color: rgba($color: #5c9f8c, $alpha: 0.4);
+      color: #fff;
+    }
+  }
 }
-
-.commonMain .childRoute {
-  width: 12rem;
-  background-color: #5c9f8c;
-  border-radius: 50px 50px 0 0;
-  text-align: center;
-  color: #fff;
-  font-size: 20px;
-}
-
-.commonMain .activeRoute {
-  background-color: #fff;
-  color: #0f7f34;
-}
-
-.commonMain .radius {
-  height: 2rem;
-  border-radius: 2rem 2rem 0 0;
-  background-color: #fff;
-}
-
-.commonMain .subjectTab {
-  display: flex;
-  justify-content: space-evenly;
-  background-color: #fff;
-}
-
-.commonMain .subjectTab div {
-  padding: 10px;
-  text-align: center;
-  cursor: pointer;
-}
-
-.commonMain .subjectTab .sub_active {
-  font-size: 16px;
-  border-bottom: 5px solid #5c9f8c;
-  border-radius: 10px;
-  background-color: rgba(92, 159, 140, 0.4);
-  color: #fff;
-}
-
+*/
 .fixedContent {
   position: fixed;
   top: 177px;

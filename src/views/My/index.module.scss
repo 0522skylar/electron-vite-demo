@@ -36,7 +36,7 @@
     font-family: 'Courier New', Courier, monospace;
   }
 }
-/*
+
 // 粘性定位
 .isTop {
   background-color: #b7d8f7;
@@ -89,7 +89,7 @@
     }
   }
 }
-*/
+
 
 /*
 // 固定定位
@@ -148,11 +148,12 @@
   position: fixed;
   margin-top: 0;
   top: 0;
-  width: calc(100vw - 200px);
+  width: calc(100vw - 218px); // 网页上的滚动条18px
   // background-color: red;
 }
 */
 
+/* 普通流
 .commonMain {
   padding: 0 2rem;
   // width: calc(100vw - 200px);
@@ -206,7 +207,7 @@
     }
   }
 }
-
+*/
 .fixedContent {
   position: fixed;
   top: 177px;
