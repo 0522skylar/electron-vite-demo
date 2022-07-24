@@ -1,9 +1,10 @@
 
 .header {
-  height: 400px;
+  height: 500px;
   width: 100%;
-  background: url(../../assets/image/headBg.jpg);
-  background-size: cover;
+  background: url(../../assets/image/background.png);
+  background-repeat: repeat-y;
+  background-size: 100%;
   .userContent {
     text-align: center;
     padding: 30px;
@@ -22,27 +23,34 @@
     font-weight: 700;
     color: #0f7f34;
   }
+  // .userDesc {
+  //   padding: 20px;
+  //   color: #287b63;
+  //   font-size: 20px;
+  //   font-family: 'Courier New', Courier, monospace;
+  // }
   .userDesc {
-    padding: 20px;
+    padding: 36px;
     color: #287b63;
     font-size: 20px;
     font-family: 'Courier New', Courier, monospace;
   }
 }
-
+/*
+// 粘性定位
 .isTop {
-  // background-color: #cdddf2;
-  background-color: red;
+  background-color: #b7d8f7;
+  // background-color: red;
 }
 .twoMainTab {
-  padding: 0 7rem;
+  padding: 0 2rem;
   padding-top: 5rem;
-  margin-top: -10rem;
+  margin-top: -18rem;
   position: sticky;
   top: 0;
   .routerTab {
-    height: 7rem;
-    line-height: 7rem;
+    height: 4rem;
+    line-height: 4rem;
     display: flex;
     justify-content: space-between;
   }
@@ -53,7 +61,7 @@
     border-radius: 50px 50px 0 0;
     text-align: center;
     color: #fff;
-    font-size: 40px;
+    font-size: 20px;
   }
   .activeRoute {
     // background-color: #0f7f34;
@@ -73,7 +81,124 @@
       cursor: pointer;
     }
     .sub_active {
-      font-size: 30px;
+      font-size: 16px;
+      border-bottom: 5px solid #5c9f8c;
+      border-radius: 10px;
+      background-color: rgba($color: #5c9f8c, $alpha: 0.4);
+      color: #fff;
+    }
+  }
+}
+*/
+
+/*
+// 固定定位
+.fixdMain {
+  padding: 0 2rem;
+  margin-top: -11rem;
+  box-sizing: border-box;
+  padding-top: 31px;
+  .routerTab {
+    height: 4rem;
+    line-height: 4rem;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .childRoute {
+    width: 12rem;
+    background-color: #5c9f8c;
+    border-radius: 50px 50px 0 0;
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+  }
+  .activeRoute {
+    // background-color: #0f7f34;
+    background-color: #fff;
+    color: #0f7f34;
+  }
+  .radius {
+    height: 2rem;
+    border-radius: 2rem 2rem 0 0;
+    background-color: #fff;
+  }
+  .subjectTab {
+    display: flex;
+    justify-content: space-evenly;
+    // background-color: #e7f2ea;
+    background-color: #fff;
+    // background-color: rgba($color: #0f7f34, $alpha: 0.1);
+    div {
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .sub_active {
+      font-size: 16px;
+      border-bottom: 5px solid #5c9f8c;
+      border-radius: 10px;
+      background-color: rgba($color: #5c9f8c, $alpha: 0.4);
+      color: #fff;
+    }
+  }
+}
+.isTop {
+  background-color: #cbe4fa;
+  position: fixed;
+  margin-top: 0;
+  top: 0;
+  width: calc(100vw - 200px);
+  // background-color: red;
+}
+*/
+
+.commonMain {
+  padding: 0 2rem;
+  // width: calc(100vw - 200px);
+  box-sizing: border-box;
+  padding-top: 31px;
+  // position: fixed;
+  margin-top: -13rem;
+  top: 0;
+  .routerTab {
+    height: 4rem;
+    line-height: 4rem;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .childRoute {
+    width: 12rem;
+    background-color: #5c9f8c;
+    border-radius: 50px 50px 0 0;
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+  }
+  .activeRoute {
+    // background-color: #0f7f34;
+    background-color: #fff;
+    color: #0f7f34;
+  }
+  .radius {
+    height: 2rem;
+    border-radius: 2rem 2rem 0 0;
+    background-color: #fff;
+  }
+  .subjectTab {
+    display: flex;
+    justify-content: space-evenly;
+    // background-color: #e7f2ea;
+    background-color: #fff;
+    // background-color: rgba($color: #0f7f34, $alpha: 0.1);
+    div {
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .sub_active {
+      font-size: 16px;
       border-bottom: 5px solid #5c9f8c;
       border-radius: 10px;
       background-color: rgba($color: #5c9f8c, $alpha: 0.4);
@@ -82,19 +207,43 @@
   }
 }
 
-
+.fixedContent {
+  position: fixed;
+  top: 177px;
+  height: 100vh;
+  overflow: scroll;
+}
+.content {
+  padding: 0 2rem;
+  background-color: #b7d8f7;
+  // position: fixed;
+  // top: 177px;
+  // height: 100vh;
+  // overflow: scroll;
+  .boxCon {
+    width: 100%;
+    background-color: #fff;
+  }
+}
 .box {
-  padding: 20px;
   .title {
     font-size: 18px;
     font-weight: 700;
     color: #5c9f8c;
+    padding: 20px;
   }
   .type {
     color: #0f7f34;
     font-size: 14px;
+    padding: 20px;
   }
-  .content {
+  .text {
     line-height: 30px;
+    padding: 20px;
   }
+}
+
+.oneText {
+  height: 1000px;
+  background-color: skyblue;
 }

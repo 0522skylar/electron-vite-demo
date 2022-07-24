@@ -36,11 +36,11 @@ export default function My() {
     }).catch((err) => {
       console.log(err, 'error');
     })
+    // 开始监听页面滚动
     const dom: HTMLElement = watchDOM.current  as unknown as HTMLElement;
     let isVisibility = true;
     const io = new IntersectionObserver(() => {
       setIsTop(isVisibility)
-
       isVisibility = !isVisibility;
     })
     io.observe(dom);
@@ -99,7 +99,7 @@ export default function My() {
           </div>
         </div>
 
-        <div className={[style.twoMainTab, isTop ? null : style.isTop].join(' ')}>
+        {/* <div className={[style.twoMainTab, isTop ? null : style.isTop].join(' ')}>
           <div className={style.routerTab}>
             <div className={style.childRoute}>字谜</div>
             <div className={`${style.childRoute} ${style.activeRoute}`}>故事</div>
@@ -116,21 +116,67 @@ export default function My() {
                 )
               })
             }
+          </div>
+        </div> */}
 
+        {/* <div className={[style.fixdMain, isTop ? null : style.isTop].join(' ')}>
+          <div className={style.routerTab}>
+            <div className={style.childRoute}>字谜</div>
+            <div className={`${style.childRoute} ${style.activeRoute}`}>故事</div>
+            <div className={style.childRoute}>英语</div>
+          </div>
+          <div className={style.radius}></div>
+          <div className={style.subjectTab}>
+            {
+              subList.map((item, index) => {
+                return (
+                  <div className={activeSub === index ? style.sub_active : ''}
+                  key={index}
+                  onClick={() => selectSubTab(index)}
+                  >{ item }</div>
+                )
+              })
+            }
+          </div>
+        </div> */}
+
+        <div className={style.commonMain}>
+          <div className={style.routerTab}>
+            <div className={style.childRoute}>字谜</div>
+            <div className={`${style.childRoute} ${style.activeRoute}`}>故事</div>
+            <div className={style.childRoute}>英语</div>
+          </div>
+          <div className={style.radius}></div>
+          <div className={style.subjectTab}>
+            {
+              subList.map((item, index) => {
+                return (
+                  <div className={activeSub === index ? style.sub_active : ''}
+                  key={index}
+                  onClick={() => selectSubTab(index)}
+                  >{ item }</div>
+                )
+              })
+            }
           </div>
         </div>
 
-        <div className={style.content}>
-          {
-            content.map((item) => (
-              <div className={style.box} key={item._id}>
-                <div className={style.title}>{ item.title }</div>
-                <div className={style.type}>{ item.storytype }</div>
-                <div className={style.content}>{ item.content }</div>
-              </div>
-            ))
-          }
+        <div className={[style.content].join(' ')}>
+          <div className={style.boxCon}>
+            {
+              content.map((item) => (
+                <div className={style.box} key={item._id}>
+                  <div className={style.title}>{ item.title }</div>
+                  <div className={style.type}>{ item.storytype }</div>
+                  <div className={style.text}>{ item.content }</div>
+                </div>
+              ))
+            }
+          </div>
         </div>
+
+
+        {/* <div className={style.oneText}></div> */}
       </div>
     </>
   )
