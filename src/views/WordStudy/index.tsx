@@ -1,12 +1,19 @@
 import { Button, Progress  } from 'antd';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import style from './index.module.scss'
 
-import { king, stopKing as stop } from './data'
+import { king, stopKing as stop, EWord } from './data'
 
 const  WordStudy = () => {
 
   const [word, setWord] = useState("abundance");
+  const [needObj, setNeedObject] = useState<EWord>({});
+  const audioDOM = useRef(null);
+  const sentenceDOM = useRef(null);
+  const [wordPlayImg, setWordPlayImg] = useState(stop)
+  const [sentencePlayImg, setSentencePlayImg] = useState(stop)
+
+
   useEffect(() => {
     fetch('http://localhost/admin/word-detail?word=abundance', {
       method: 'get',
@@ -14,11 +21,35 @@ const  WordStudy = () => {
     }).then((response) => response.json())
     .then((res) => {
       console.log(res.data)
+      setNeedObject(res.data);
     }).catch((err) => {
       console.log(err, 'error');
     })
   }, [])
 
+  const overAudio = () => {
+    setWordPlayImg(stop)
+  }
+
+  const ready = () => {
+    setWordPlayImg(king)
+  }
+
+  const overSentence = () => {
+    setSentencePlayImg(stop);
+  }
+
+  const playSentence = () => {
+    setSentencePlayImg(king);
+    const dom: HTMLAudioElement = sentenceDOM.current  as unknown as HTMLAudioElement;
+    dom.play();
+  }
+
+  const playWord = () => {
+    setWordPlayImg(king);
+    const dom: HTMLAudioElement = audioDOM.current  as unknown as HTMLAudioElement;
+    dom.play();
+  }
   return (
     <>
       <div className={style.header}>
@@ -40,10 +71,10 @@ const  WordStudy = () => {
       </div>
       <div className={style.line}></div>
       <div className={style.content}>
-        <div className={style.word}>contrast</div>
+        <div className={style.word}>{word}</div>
         <div className={style.account}>
-            <img src={king} alt="" />
-          /ˈkɑnˌtræst/, /kənˈtræst/
+            <img src={wordPlayImg} alt="" onClick={playWord}/>
+            {needObj.accent}
         </div>
       </div>
       <div className={style.cardMsg}>
@@ -51,10 +82,10 @@ const  WordStudy = () => {
         <div className={style.boxMask}>
           <span className={style.explame}>例句</span>
           <span className={style.juzi}>
-          In chess, the <span className={style.current}>contrast</span> between black and white is easy to see.
+            {needObj.sentence}
           </span>
-          <span className={style.call}>
-            <img src={stop} />
+          <span className={style.call} onClick={playSentence}>
+            <img src={sentencePlayImg} />
           </span>
         </div>
       </div>
@@ -62,6 +93,22 @@ const  WordStudy = () => {
         <div><Button className={style.know}>我认识</Button></div>
         <div><Button className={style.message}>提示一下</Button></div>
       </div>
+
+      <audio className={style.audio}
+      ref={audioDOM}
+      autoPlay
+      src={`https://dict.youdao.com/dictvoice?audio=${needObj.word}&type=2`}
+      onEnded={overAudio}
+      onCanPlay={ready}
+      >对不起，您的浏览器不支持HTML5音频播放。</audio>
+
+
+      <audio
+      className={style.audio}
+      ref={sentenceDOM}
+      src={`https://dict.youdao.com/dictvoice?audio=${needObj.sentence}&le=eng`}
+      onEnded={overSentence}
+      >对不起，您的浏览器不支持HTML5音频播放。</audio>
     </>
   )
 }

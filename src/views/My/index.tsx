@@ -85,7 +85,6 @@ export default function My() {
       io.disconnect();
       // window.removeEventListener('scroll', debounce(onScroll, 500))
       window.removeEventListener('scroll', onScroll)
-
     }
   }, [])
 
