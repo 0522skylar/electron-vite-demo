@@ -119,6 +119,7 @@
   color: #fff;
   background-color: #27bf9f;
   border-radius: 50px;
+  border: none;
 }
 
 .footer .message {
@@ -128,8 +129,80 @@
   color: #fff;
   border-radius: 50px;
   background-color: #fd925a;
+  border: none;
 }
 
 .parentBox {
-  height: 250px;
+  height: 200px;
+}
+
+.wordDetail {
+  margin: 0 auto;
+  width: 600px;
+  background-color: #f0f0f5;
+  border-radius: 20px;
+  padding: 30px;
+}
+
+.wordDetail .wordTitle {
+  display: flex;
+  justify-content: space-between;
+}
+
+.wordDetail .wordTitle .word {
+  font-size: 30px;
+  font-weight: 700;
+  color: #27bf9f;
+}
+
+.wordDetail .wordTitle .rightIcon {
+  display: block;
+}
+
+.wordDetail .wordTitle .rightIcon img {
+  width: 30px;
+  height: 30px;
+}
+
+.wordDetail .account {
+  font-size: 14px;
+  color: #666;
+  padding: 20px 0;
+}
+
+.wordDetail .btnIcon {
+  border-top: 2px solid #fff;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.wordDetail .btnIcon span {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 14px;
+  background-color: #dddddd;
+  color: #27bf9f;
+}
+
+.wordDetail p {
+  margin: 20px 0;
+  font-size: 18px;
+}
+
+.wordDetail .call img {
+  width: 30px;
+  height: 30px;
+}
+
+.wordDetail .nextWordBtn {
+  display: block;
+  margin: 0 auto;
+  width: 250px;
+  height: 50px;
+  line-height: 40px;
+  color: #fff;
+  background-color: #27bf9f;
+  border-radius: 50px;
+  border: none;
 }
