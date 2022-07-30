@@ -1,6 +1,7 @@
 import { Button, Progress  } from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
 import style from './index.module.scss'
+import 'animate.css';
 
 import { king, stopKing as stop, EWord } from './data'
 
@@ -12,6 +13,8 @@ const  WordStudy = () => {
   const sentenceDOM = useRef(null);
   const [wordPlayImg, setWordPlayImg] = useState(stop)
   const [sentencePlayImg, setSentencePlayImg] = useState(stop)
+  const [showMsg, setShowMsg] = useState(false);
+
 
 
   useEffect(() => {
@@ -50,6 +53,11 @@ const  WordStudy = () => {
     const dom: HTMLAudioElement = audioDOM.current  as unknown as HTMLAudioElement;
     dom.play();
   }
+
+  const getMesage = () => {
+    setShowMsg(true)
+    playSentence();
+  }
   return (
     <>
       <div className={style.header}>
@@ -77,21 +85,27 @@ const  WordStudy = () => {
             {needObj.accent}
         </div>
       </div>
-      <div className={style.cardMsg}>
-        <p>根据提示，判断释义</p>
-        <div className={style.boxMask}>
-          <span className={style.explame}>例句</span>
-          <span className={style.juzi}>
-            {needObj.sentence}
-          </span>
-          <span className={style.call} onClick={playSentence}>
-            <img src={sentencePlayImg} />
-          </span>
-        </div>
+      <div className={style.parentBox}>
+        {
+          showMsg ? (
+            <div className={[style.cardMsg, 'animate__animated','animate__backInRight'].join(' ')}>
+              <p>根据提示，判断释义</p>
+              <div className={style.boxMask}>
+                <span className={style.explame}>例句</span>
+                <span className={style.juzi}>
+                  {needObj.sentence}
+                </span>
+                <span className={style.call} onClick={playSentence}>
+                  <img src={sentencePlayImg} />
+                </span>
+              </div>
+            </div>
+          ) : ''
+        }
       </div>
       <div className={style.footer}>
         <div><Button className={style.know}>我认识</Button></div>
-        <div><Button className={style.message}>提示一下</Button></div>
+        <div><Button className={style.message} onClick={getMesage}>提示一下</Button></div>
       </div>
 
       <audio className={style.audio}
