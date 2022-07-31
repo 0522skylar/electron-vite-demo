@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useRef, useState } from 'react'
 import { Button } from 'antd';
+import {useNavigate} from 'react-router-dom'
 import style from './index.module.scss'
 import png1 from '@/assets/image/1.png'
 import png2 from '@/assets/image/2.png'
@@ -10,6 +11,7 @@ import png6 from '@/assets/image/6.png'
 import png7 from '@/assets/image/7.png'
 
 export default function Grade() {
+  const router = useNavigate();
   return (
     <div className={style.container}>
       <h1>选择学习</h1>
@@ -17,15 +19,15 @@ export default function Grade() {
         <p className={style.title}>单词</p>
         <p className={style.desc}>选择自己适合的等级进行学习</p>
         <div className={style.gardBox}>
-          <div className={style.grade}>
+          <div className={style.grade} onClick={() => router('/wordStudy', {state: 5})}>
             <img src={png1} />
             低级（5个）
           </div>
-          <div className={style.grade}>
+          <div className={style.grade} onClick={() => router('/wordStudy', {state: 10})}>
             <img src={png2} />
             中级（10个）
           </div>
-          <div className={style.grade}>
+          <div className={style.grade} onClick={() => router('/wordStudy', {state: 20})}>
             <img src={png3} />
             高级（20个）
           </div>

@@ -1,36 +1,88 @@
-import { Button, Progress  } from 'antd';
+import { Button, Progress, Modal } from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
+import {useLocation, useNavigate} from 'react-router-dom'
+import Comment from '@/components/Comment'
 import style from './index.module.scss'
 import 'animate.css';
-
 import { king, stopKing as stop, EWord } from './data'
 
 const  WordStudy = () => {
-
-  const [word, setWord] = useState("abundance");
+  const router = useNavigate();
+  const {state} = useLocation();// state传参
+  const [count, setCount] = useState(state ? Number(state) : 5);
   const [needObj, setNeedObject] = useState<EWord>({});
   const audioDOM = useRef(null);
   const sentenceDOM = useRef(null);
   const [wordPlayImg, setWordPlayImg] = useState(stop)
   const [sentencePlayImg, setSentencePlayImg] = useState(stop)
   const [showMsg, setShowMsg] = useState(false);
-  const [showWordDetail, setShowWordDetail] = useState(false);
+  const [showWordDetail, setShowWordDetail] = useState(true);
+  const [studyList, setStudyList] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(-1);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
 
 
   useEffect(() => {
-    fetch('http://localhost/admin/word-detail?word=abundance', {
+    fetch('http://localhost/admin/gaokaoList?count' + count, {
       method: 'get',
-
     }).then((response) => response.json())
     .then((res) => {
-      console.log(res.data)
-      setNeedObject(res.data);
+      setStudyList(res.data);
+      console.log(res.data);
+      getWordDetail(res.data);
     }).catch((err) => {
       console.log(err, 'error');
     })
   }, [])
 
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+    router('/grade')
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  const getWordDetail = (arr: Array<string>) => {
+
+    if(arr.length === 0) {
+      return;
+    }
+    fetch('http://localhost/admin/word-detail?word=' + arr[currentIndex+1], {
+      method: 'get',
+
+    }).then((response) => response.json())
+    .then((res) => {
+      setNeedObject(res.data);
+    }).catch((err) => {
+      console.log(err, 'error');
+    })
+    setCurrentIndex(currentIndex + 1);
+
+  }
+
+  const studyNext = () => {
+    console.log(currentIndex, count, 'end')
+    if(currentIndex+1 >= count) {
+      showModal();
+      return;
+    }
+    getWordDetail(studyList);
+    setShowWordDetail(true);
+  }
+
+  const showDetailFun = () => {
+    setShowWordDetail(false);
+    setShowMsg(false)
+    playWord();
+  }
   const overAudio = () => {
     setWordPlayImg(stop)
   }
@@ -64,11 +116,11 @@ const  WordStudy = () => {
       <div className={style.header}>
         <div className={style.item}>
           <div className={style.desc}>今日新学</div>
-          <div className={style.num}>0/5</div>
+          <div className={style.num}>{currentIndex +1 }/{count}</div>
         </div>
         <div className={style.item}>
           <div className={style.desc}>今日新词</div>
-          <div className={style.num}>0/5</div>
+          <div className={style.num}>{currentIndex +1 }/{count}</div>
         </div>
         <div className={style.item}>
           <div className={style.desc}>学习时间</div>
@@ -76,14 +128,14 @@ const  WordStudy = () => {
         </div>
       </div>
       <div className={style.progress}>
-        <Progress percent={100} />
+        <Progress percent={(currentIndex +1) / count * 100} />
       </div>
       <div className={style.line}></div>
       {
         showWordDetail ? (
         <div className="animate__animated animate__backInRight">
           <div className={style.content}>
-            <div className={style.word}>{word}</div>
+            <div className={style.word}>{needObj.word}</div>
             <div className={style.account}>
                 <img src={wordPlayImg} alt="" onClick={playWord}/>
                 {needObj.accent}
@@ -108,49 +160,59 @@ const  WordStudy = () => {
             }
           </div>
           <div className={style.footer}>
-            <div><Button className={style.know}>我认识</Button></div>
+            <div><Button className={style.know} onClick={showDetailFun}>我认识</Button></div>
             <div><Button className={style.message} onClick={getMesage}>提示一下</Button></div>
           </div>
         </div>
         ) : (
-          <div className="animate__animated animate__backInRight">
+          <div className="animate__animated animate__backInLeft">
             <div className={style.wordDetail}>
               <div className={style.wordTitle}>
-                <span className={style.word}>variety</span>
+                <span className={style.word}>{needObj.word}</span>
                 <span className={style.rightIcon}>
                   <img src={wordPlayImg} alt="" onClick={playWord}/>
                 </span>
               </div>
-              <div className={style.account}>/variety/</div>
+              <div className={style.account}>{needObj.accent}</div>
               <div className={style.btnIcon}>
                 <span>释义</span>
               </div>
-              <p>n.种类;变化;多样性</p>
+              <p>{needObj.mean_cn}</p>
               <div className={style.btnIcon}>
                 <span>英文释义</span>
               </div>
-              <p>a form of theatre or television entertainment that consists of a series of short performances, such as singing, dancing and funny acts</p>
+              <p>{needObj.mean_en}</p>
               <div className={style.btnIcon}>
                 <span>例句</span>
               </div>
               <div className={style.sentence}>
-                <p> of tomatoes; they are different in color.
+                <p> {needObj.sentence}
                 <span className={style.call} onClick={playSentence}>
                   <img src={sentencePlayImg} />
                 </span>
                 </p>
-                <p>番茄有很多种类，颜色各不相同。</p>
+                <p>{needObj.sentence_trans}</p>
               </div>
-              <div className={style.btnIcon}>
-                <span>词根词汇</span>
-              </div>
-              <p>vari变化 + ety名词后缀 → variety变化，多样化</p>
-              <button className={style.nextWordBtn}>下一个</button>
+              {
+                needObj.word_etyma ? (
+                  <>
+                  <div className={style.btnIcon}>
+                    <span>词根词汇</span>
+                  </div>
+                  <p>{needObj.word_etyma}</p>
+                  </>
+                ) : ''
+              }
+
+              <button className={style.nextWordBtn} onClick={studyNext}>下一个</button>
             </div>
           </div>
         )
       }
-
+      <div className={style.zhanweifu}></div>
+      <Modal title="评价" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+        <Comment isLandscape={true}></Comment>
+      </Modal>
       <audio className={style.audio}
       ref={audioDOM}
       autoPlay
