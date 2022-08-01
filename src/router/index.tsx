@@ -11,6 +11,7 @@ import NoFind from '../views/Error/noFind'
 import NoServer from '../views/Error/noServer'
 import WordStudy from '../views/WordStudy'
 import My from '../views/My'
+import ListShuffler from '../views/Animation'
 
 interface IRoute {
   path: string;
@@ -84,5 +85,10 @@ export const router: Array<IRoute> = [
     path: 'my',
     name: 'My',
     element: <My />,
+  },
+  {
+    path: 'animate',
+    name: 'Animate',
+    element: <ListShuffler />,
   }
 ];
