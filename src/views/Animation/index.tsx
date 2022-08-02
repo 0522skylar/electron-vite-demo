@@ -2,6 +2,8 @@ import React, { useLayoutEffect, useState, useRef } from 'react';
 import styles from './index.module.scss'
 
 //https://github.com/MinJieLiu/react-flip-demo/blob/main/src/components/Flipper/FlipContext.ts
+
+//https://minjieliu.github.io/react-flip-demo/
 export default function ListShuffler() {
   const [data, setData] = useState([0, 1, 2, 3, 4, 5]);
 
