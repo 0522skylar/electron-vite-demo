@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useRef, useState, useEffect } from "react";
 import { shuffle, range } from "lodash-es";
 import { createChildElementRectMap } from "./utils";
 import {
@@ -17,12 +17,15 @@ const Demo1 = () => {
 
   const lastRectRef = useRef<Map<HTMLElement, DOMRect>>(new Map());
 
-  useLayoutEffect(() => {
+  useLayoutEffect(() => { // 渲染完成之前执行
     const currentRectMap = createChildElementRectMap(listRef.current);
+    // console.log(currentRectMap, '----layout---', lastRectRef.current)
     // 变更后计算位置
+    // console.log(data, '22222222')
+
     lastRectRef.current.forEach((prevRect, node) => {
       const currentRect = currentRectMap.get(node);
-
+      // console.log(node, prevRect, 11111111)
       const invert = {
         left: prevRect.left - currentRect.left,
         top: prevRect.top - currentRect.top,
@@ -51,6 +54,8 @@ const Demo1 = () => {
     setData(shuffle);
     // 存储变更前的位置信息
     lastRectRef.current = createChildElementRectMap(listRef.current);
+    // console.log(listRef.current, 1111111)
+    // console.log(lastRectRef.current, '1111111111')
   }
 
   return (

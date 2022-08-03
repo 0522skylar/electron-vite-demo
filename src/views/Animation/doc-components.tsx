@@ -10,7 +10,7 @@ const StyledListBox = styled.div`
 
   .list-title {
     position: absolute;
-    top: 0;
+    top: -50px;
     left: 20px;
     font-size: 14px;
     padding: 0 10px;
