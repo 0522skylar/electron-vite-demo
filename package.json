@@ -17,6 +17,7 @@
   "dependencies": {
     "animate.css": "^4.1.1",
     "antd": "^4.21.2",
+    "axios": "^0.27.2",
     "better-scroll": "^1.15.2",
     "electron-store": "^8.0.1",
     "lodash-es": "^4.17.21",
