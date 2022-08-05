@@ -41,7 +41,13 @@ export default function Flipper({
       currentRectMap.set(item.flipId, item.node.getBoundingClientRect());
     });
 
+    // console.log(currentRectMap, lastRectRef, 1111111111)
+
+    // currentRectMap里面是key为每个数字，value为每个数字所对应的位置信息
+    // lastRectRef里面有每个dom节点，属性为node，flipId是每个数字
+    
     lastRectRef.current.forEach(({ flipId, node, rect }) => {
+      // console.log(flipId, node,'------------', rect, '-----------')
       const currentRect = currentRectMap.get(flipId);
 
       if (!(currentRect && rect)) {

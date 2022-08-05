@@ -19,11 +19,13 @@ function Flipped({ children, innerRef }: FlippedProps) {
 
   useLayoutEffect(() => {
     const ctx = ctxRef.current;
+
     const node = currentRef.current;
 
     const flipId = ctx.nextId();
+    // console.log(ctx, '-----ctx--------', flipId)
 
-    if (node) {
+    if (node) { // 第一次不需要加
       ctx.add({ flipId, node });
     }
 

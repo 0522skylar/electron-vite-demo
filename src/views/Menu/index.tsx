@@ -78,7 +78,7 @@ const MenuCom: React.FC = () => {
       mode="inline"
       openKeys={openKeys}
       onOpenChange={onOpenChange}
-      style={{ width: 200 }}
+      style={{ width: 200, position: 'fixed', top: 0, left: 0 }}
       items={items}
     />
   );

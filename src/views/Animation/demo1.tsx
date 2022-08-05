@@ -31,6 +31,26 @@ const Demo1 = () => {
         top: prevRect.top - currentRect.top,
       };
 
+      const isLastRectOverflow =
+        prevRect.right < 0 ||
+        prevRect.left > innerWidth ||
+        prevRect.bottom < 0 ||
+        prevRect.top > innerHeight;
+
+      const isCurrentRectOverflow =
+        currentRect.right < 0 ||
+        currentRect.left > innerWidth ||
+        currentRect.bottom < 0 ||
+        currentRect.top > innerHeight;
+
+      if (isLastRectOverflow && isCurrentRectOverflow) {
+        return;
+      }
+
+      if (invert.top === 0 && invert.left === 0) {
+        return;
+      }
+
       const keyframes = [
         {
           transform: `translate(${invert.left}px, ${invert.top}px)`,
@@ -57,12 +77,16 @@ const Demo1 = () => {
     // console.log(listRef.current, 1111111)
     // console.log(lastRectRef.current, '1111111111')
   }
+  function initDate() {
+    setData(initialData);
+  }
 
   return (
     <ListBox title="直接实现">
       <ButtonGroup>
         <Button onClick={add}>添加</Button>
         <Button onClick={shuffleList}>乱序</Button>
+        <Button onClick={initDate}>重置</Button>
       </ButtonGroup>
       <SquareBox ref={listRef}>
         {data.map((n) => (

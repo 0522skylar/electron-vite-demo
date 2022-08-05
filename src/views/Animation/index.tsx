@@ -10,9 +10,9 @@ export default function App() {
   return (
     <DndProvider backend={HTML5Backend}>
       <div className={styles.app}>
-        <Demo1 />
+        {/* <Demo1 /> */}
         <Demo2 />
-        <Demo3 />
+        {/* <Demo3 /> */}
       </div>
     </DndProvider>
   );
