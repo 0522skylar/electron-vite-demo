@@ -9,6 +9,13 @@
       "command": "node .vscode/.debug.script.mjs",
       "isBackground": true,
       "problemMatcher": []
+    },
+    {
+      "type": "npm",
+      "script": "dev",
+      "problemMatcher": [],
+      "label": "npm: dev",
+      "detail": "vite"
     }
   ]
 }

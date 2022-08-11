@@ -55,7 +55,7 @@ const items: MenuItem[] = [
     getItem(SubMenuType(router[9]), '10'),
     getItem(SubMenuType(router[10]), '11'),
   ]),getItem('Navigation Four', 'sub5', <SettingOutlined />, [
-    getItem(SubMenuType(router[13]), '13'),
+    getItem(SubMenuType(router[13]), '14'),
   ]),];
 
 // submenu keys of first level
