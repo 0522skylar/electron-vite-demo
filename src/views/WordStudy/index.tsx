@@ -24,7 +24,7 @@ const  WordStudy = () => {
 
 
   useEffect(() => {
-    fetch('http://localhost/admin/gaokaoList?count' + count, {
+    fetch('http://localhost/admin/gaokaoList?count=' + count, {
       method: 'get',
     }).then((response) => response.json())
     .then((res) => {

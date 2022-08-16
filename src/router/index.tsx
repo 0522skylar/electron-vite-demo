@@ -86,9 +86,9 @@ export const router: Array<IRoute> = [
     name: 'My',
     element: <My />,
   },
-  {
-    path: 'animate',
-    name: 'Animate',
-    element: <ListShuffler />,
-  }
+  // {
+  //   path: 'animate',
+  //   name: 'Animate',
+  //   element: <ListShuffler />,
+  // }
 ];
