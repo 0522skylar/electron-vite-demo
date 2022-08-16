@@ -2,6 +2,7 @@ import { Radio, Tabs } from 'antd';
 import React, { useEffect, useState, useRef } from 'react';
 import style from './index.module.scss'
 import headImg from '@/assets/image/myHeadImg.jpg';
+import axios from 'axios';
 
 const { TabPane } = Tabs;
 
@@ -60,6 +61,13 @@ export default function My() {
       }
   }
   useEffect(() => {
+    axios.get('http://localhost:80/admin/story').then((res) => {
+      console.log(res)
+      handlerStory(res.data.data.rows)
+    }, err => {
+      console.log(err, 'error');
+    })
+    /*
     fetch('http://localhost:80/admin/story', {
       method: 'get',
     }).then((response) => response.json())
@@ -68,7 +76,7 @@ export default function My() {
       handlerStory(res.data.rows)
     }).catch((err) => {
       console.log(err, 'error');
-    })
+    })*/
     // 开始监听页面滚动
     const dom: HTMLElement = watchDOM.current  as unknown as HTMLElement;
     let isVisibility = true;

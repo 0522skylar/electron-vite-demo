@@ -3,4 +3,26 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   padding: 100px;
+  background-color: #eeffee;
+}
+
+.demo2 {
+  width: 3in;
+  background: rgb(119, 221, 221);
+  border: 2ex solid rgb(119, 221, 221);
+  border-radius: 2ex;
+  display: grid;
+  gap: 4ex;
+  box-shadow: rgb(17 119 136 / 33%) 0px 0px 1ex;
+  margin: 3em auto;
+
+  .child {
+    height: 3in;
+    box-shadow: rgb(17 119 136) 0px 0px 1ex inset;
+    filter: drop-shadow(rgb(17, 119, 136) 0px 0px 1ex);
+  }
+  .text {
+    height: 3em;
+    box-shadow: rgb(17 119 136 / 33%) 0px 0px 1ex;
+  }
 }

@@ -13,6 +13,10 @@ export default function App() {
         {/* <Demo1 /> */}
         <Demo2 />
         {/* <Demo3 /> */}
+        <div className={styles.demo2}>
+          <div className={styles.child}></div>
+          <div className={styles.text}>1234</div>
+        </div>
       </div>
     </DndProvider>
   );
