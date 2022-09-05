@@ -3,6 +3,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import {useLocation, useNavigate} from 'react-router-dom'
 import Comment from '@/components/Comment'
 import style from './index.module.scss'
+
+// import './test.module.scss'
 import 'animate.css';
 import { king, stopKing as stop, EWord } from './data'
 
