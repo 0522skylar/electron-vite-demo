@@ -12,6 +12,7 @@ import NoServer from '../views/Error/noServer'
 import WordStudy from '../views/WordStudy'
 import My from '../views/My'
 import ListShuffler from '../views/Animation'
+import PdfToHtml from '../views/pdfTohtml'
 
 interface IRoute {
   path: string;
@@ -86,9 +87,14 @@ export const router: Array<IRoute> = [
     name: 'My',
     element: <My />,
   },
-  // {
-  //   path: 'animate',
-  //   name: 'Animate',
-  //   element: <ListShuffler />,
-  // }
+  {
+    path: 'animate',
+    name: 'Animate',
+    element: <ListShuffler />,
+  },
+  {
+    path: 'pdf2html',
+    name: 'pdf2html',
+    element: <PdfToHtml />
+  }
 ];

@@ -47,7 +47,7 @@ const items: MenuItem[] = [
   getItem('English', 'sub2', <AppstoreOutlined />, [
     getItem(SubMenuType(router[5]), '5'),
     getItem(SubMenuType(router[6]), '6'),
-    getItem(SubMenuType(router[7]), '13'),
+    getItem(SubMenuType(router[7]), '777'),
     getItem('Submenu', 'sub3', null, [getItem(SubMenuType(router[11]), '7'), getItem('Option 8', '8')]),
   ]),
   getItem('Navigation Three', 'sub4', <SettingOutlined />, [
@@ -55,7 +55,8 @@ const items: MenuItem[] = [
     getItem(SubMenuType(router[9]), '10'),
     getItem(SubMenuType(router[10]), '11'),
   ]),getItem('Navigation Four', 'sub5', <SettingOutlined />, [
-    // getItem(SubMenuType(router[13]), '13'),
+    getItem(SubMenuType(router[13]), '13'),
+    getItem(SubMenuType(router[14]), '14'),
   ]),];
 
 // submenu keys of first level
